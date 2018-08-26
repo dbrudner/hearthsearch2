@@ -1,24 +1,15 @@
-import { createStore, applyMiddleware } from "redux";
+import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
+import { cardsReducer } from "./features/search/reducer";
+import thunk from "redux-thunk";
 
-type stateType = {
-	thing: string;
-};
+const rootReducer = combineReducers({
+	cards: cardsReducer
+});
 
-const defaultState = {
-	thing: ""
-};
-
-export const reducer = (state: stateType = defaultState, action) => {
-	if (action.type === "THING_CHANGED") {
-		return { ...state, thing: "updated" };
-	}
-};
-
-export function initializeStore(initialState = defaultState) {
+export function initializeStore() {
 	return createStore(
-		reducer,
-		initialState,
-		composeWithDevTools(applyMiddleware())
+		rootReducer,
+		composeWithDevTools(applyMiddleware(thunk))
 	);
 }

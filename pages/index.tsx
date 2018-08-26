@@ -1,5 +1,6 @@
 import * as React from "react";
 import "../style.css";
+import { connect } from "react-redux";
 
 export interface IndexProps {}
 
@@ -19,4 +20,4 @@ class Index extends React.Component<IndexProps, IndexState> {
 	}
 }
 
-export default Index;
+export default connect()(Index);

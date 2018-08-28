@@ -1,10 +1,10 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { cardsReducer } from "./features/search/reducer";
+import { searchReducer } from "./features/search/reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
-	cards: cardsReducer
+	search: searchReducer
 });
 
 export function initializeStore() {

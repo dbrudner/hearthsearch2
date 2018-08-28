@@ -1,6 +1,7 @@
 import * as React from "react";
 import { fetchCards } from "./fetch-cards";
 import { connect } from "react-redux";
+import Results from "./results";
 
 export interface SearchProps {
 	fetchCards: any;
@@ -18,7 +19,12 @@ class Search extends React.Component<SearchProps, SearchState> {
 	}
 
 	render() {
-		return <div>Search</div>;
+		return (
+			<React.Fragment>
+				<h1>Search</h1>
+				<Results />
+			</React.Fragment>
+		);
 	}
 }
 

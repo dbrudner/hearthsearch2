@@ -1,4 +1,5 @@
 import Search from "../features/search";
+import "../style.css";
 
 export interface SearchPageProps {}
 

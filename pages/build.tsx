@@ -3,7 +3,6 @@ import { heroes as colors } from "../features/generic/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
-import Deck from "../features/build-deck/deck";
 
 const { Meta } = Card;
 
@@ -39,10 +38,6 @@ const Build = (props: any) => {
 	if (format) {
 		return (
 			<div>
-				<div style={{ width: "20vw", display: "fixed", left: 0 }}>
-					<Deck />
-					adsf
-				</div>
 				<div
 					style={{
 						display: "grid",

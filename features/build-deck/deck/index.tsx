@@ -1,17 +1,27 @@
 import { connect } from "react-redux";
 import _ from "lodash";
+import * as types from "../reducer";
 
-const Deck = ({ deck }) => (
+const Deck = props => (
 	<ul>
-		{_.map(deck, card => (
-			<li>
+		{_.map(props.deck, card => (
+			<li key={card.dbfId}>
 				{card.name} {card.quantity}
+				<button
+					onClick={() =>
+						props.dispatch({
+							type: types.CARD_REMOVED,
+							payload: card.name
+						})
+					}
+				>
+					Remove
+				</button>
 			</li>
 		))}
 	</ul>
 );
 
 export default connect(state => {
-	console.log(state);
 	return { deck: state.deck };
 })(Deck);

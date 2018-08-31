@@ -19,14 +19,19 @@ export const buildDeckReducer = (state = [], action) => {
 	}
 
 	if (action.type === CARD_REMOVED) {
-		if (state.includes(action.payload.name)) {
-			return {
-				...state,
-				[action.payload.name]: { ...action.payload, quantity: 1 }
-			};
+		const { payload } = action;
+		console.log(state);
+		if (state[payload].quantity === 2) {
+			// Two lines for readability. I'm surprised how complicated this was to do
+			const updatedCard = { ...state[payload], quantity: 1 };
+			return { ...state, [payload]: { ...updatedCard } };
 		} else {
-			// const {nom, ...deck} = state
-			return state;
+			return Object.keys(state).reduce((deck: any, cardName: string) => {
+				if (cardName === payload) {
+					return deck;
+				}
+				return { ...deck, [cardName]: { ...state[cardName] } };
+			}, {});
 		}
 	}
 

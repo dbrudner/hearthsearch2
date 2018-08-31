@@ -1,4 +1,4 @@
-import * as types from "./actions";
+import * as types from "../generic/cards-model";
 
 export const fetchCards = () => {
 	return async dispatch => {

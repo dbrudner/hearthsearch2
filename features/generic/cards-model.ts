@@ -1,5 +1,8 @@
-import * as types from "./actions";
 import { createSelector } from "reselect";
+
+export const FETCHED_RESULTS = "FETCHED_RESULTS";
+export const IS_LOADING = "IS_LOADING";
+export const MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED";
 
 const initialState = {
 	cards: [],
@@ -8,11 +11,11 @@ const initialState = {
 };
 
 export const searchReducer = (state = initialState, action) => {
-	if (action.type === types.FETCHED_RESULTS) {
+	if (action.type === FETCHED_RESULTS) {
 		return { ...state, cards: action.payload, loading: false };
 	}
 
-	if (action.type === types.MORE_CARDS_SELECTED) {
+	if (action.type === MORE_CARDS_SELECTED) {
 		return { ...state, displayCards: state.displayCards + 15 };
 	}
 

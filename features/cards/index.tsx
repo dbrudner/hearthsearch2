@@ -10,8 +10,6 @@ const capitalize = string => string.charAt(0) + string.substr(1).toLowerCase();
 const Title = props => {
 	const handleClick = e => {
 		e.stopPropagation();
-		console.log("Hi");
-
 		// Dispatch action to add card
 	};
 

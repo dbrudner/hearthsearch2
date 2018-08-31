@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { searchReducer } from "./features/search/reducer";
+import { searchReducer } from "./features/generic/cards-model";
 import { buildDeckReducer } from "./features/build-deck/reducer";
 import thunk from "redux-thunk";
 

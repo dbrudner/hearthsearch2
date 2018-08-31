@@ -1,7 +1,6 @@
 import { connect } from "react-redux";
-import { getVisibleCards } from "./reducer";
+import { getVisibleCards, MORE_CARDS_SELECTED } from "../generic/cards-model";
 import { Button, Collapse } from "antd";
-import * as types from "./actions";
 import Cards from "../cards";
 
 export interface ResultsProps {
@@ -33,7 +32,7 @@ class Results extends React.Component<any, any> {
 				<Cards cards={this.props.visibleCards} />
 				<Button
 					onClick={() =>
-						this.props.dispatch({ type: types.MORE_CARDS_SELECTED })
+						this.props.dispatch({ type: MORE_CARDS_SELECTED })
 					}
 				>
 					Load more

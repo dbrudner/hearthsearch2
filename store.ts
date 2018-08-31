@@ -5,7 +5,7 @@ import { buildDeckReducer } from "./features/build-deck/reducer";
 import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
-	search: searchReducer,
+	cards: searchReducer,
 	deck: buildDeckReducer
 });
 

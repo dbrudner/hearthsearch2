@@ -1,5 +1,5 @@
 import * as React from "react";
-import { fetchCards } from "./fetch-cards";
+import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import Results from "./results";
 

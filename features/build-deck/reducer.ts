@@ -1,5 +1,5 @@
-const CARD_ADDED = "CARD_ADDED";
-const CARD_REMOVED = "CARD_REMOVED";
+export const CARD_ADDED = "CARD_ADDED";
+export const CARD_REMOVED = "CARD_REMOVED";
 
 export const buildDeckReducer = (state = [], action) => {
 	if (action.type === CARD_ADDED) {

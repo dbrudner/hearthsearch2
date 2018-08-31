@@ -3,6 +3,7 @@ import Cards from "../cards";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import { getVisibleCards } from "../generic/cards-model";
+import Deck from "./deck";
 
 class BuildDeck extends React.Component<any, any> {
 	componentDidMount() {
@@ -10,7 +11,25 @@ class BuildDeck extends React.Component<any, any> {
 	}
 
 	render() {
-		return <Cards cards={this.props.visibleCards} />;
+		return (
+			<div>
+				<div
+					style={{
+						width: "20vw",
+						height: "100vh",
+						position: "fixed",
+						left: 0,
+						backgroundColor: "white"
+					}}
+				>
+					asdf
+					<Deck />
+				</div>
+				<div style={{ marginLeft: "20vw" }}>
+					<Cards cards={this.props.visibleCards} />;
+				</div>
+			</div>
+		);
 	}
 }
 

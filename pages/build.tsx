@@ -3,6 +3,7 @@ import { heroes as colors } from "../features/generic/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
+import Deck from "../features/build-deck/deck";
 
 const { Meta } = Card;
 
@@ -37,24 +38,35 @@ const Build = (props: any) => {
 
 	if (format) {
 		return (
-			<div
-				style={{
-					display: "grid",
-					gridTemplateColumns: "auto auto auto",
-					width: "40vw",
-					marginLeft: "30vw"
-				}}
-			>
-				{CLASSES.map((hsClass: string) => (
-					<Link href={`/build?format=${format}&hero=${hsClass}`}>
-						<div style={classCard(hsClass)}>
-							<h2 style={{ color: "white", textAlign: "center" }}>
-								{hsClass}
-							</h2>
-							<img src={`/static/SVG/Class_${hsClass}.svg`} />
-						</div>
-					</Link>
-				))}
+			<div>
+				<div style={{ width: "20vw", display: "fixed", left: 0 }}>
+					<Deck />
+					adsf
+				</div>
+				<div
+					style={{
+						display: "grid",
+						gridTemplateColumns: "auto auto auto",
+						width: "40vw",
+						marginLeft: "30vw"
+					}}
+				>
+					{CLASSES.map((hsClass: string) => (
+						<Link href={`/build?format=${format}&hero=${hsClass}`}>
+							<div style={classCard(hsClass)}>
+								<h2
+									style={{
+										color: "white",
+										textAlign: "center"
+									}}
+								>
+									{hsClass}
+								</h2>
+								<img src={`/static/SVG/Class_${hsClass}.svg`} />
+							</div>
+						</Link>
+					))}
+				</div>
 			</div>
 		);
 	}

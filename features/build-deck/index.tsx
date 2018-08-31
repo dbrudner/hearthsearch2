@@ -2,21 +2,35 @@ import * as React from "react";
 import Cards from "../cards";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
+import { getVisibleCards } from "../generic/cards-model";
 
-class BuildDeck extends React.Component {
+class BuildDeck extends React.Component<any, any> {
 	componentDidMount() {
-		fetchCards();
+		this.props.fetchCards();
 	}
 
 	render() {
-		console.log(this.props.cards.cards);
-		return <div>{/* <Cards cards={this.props.cards} /> */}</div>;
+		return <Cards cards={this.props.visibleCards} />;
 	}
 }
 
 BuildDeck.getInitialProps = ({ query }) => {
-	console.log(query);
 	return { query: "blah" };
 };
 
-export default connect(state => state)(BuildDeck);
+const mapStateToProps = state => {
+	return {
+		visibleCards: getVisibleCards(state)
+	};
+};
+
+const mapDispatchToProps = dispatch => {
+	return {
+		fetchCards: () => dispatch(fetchCards())
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(BuildDeck);

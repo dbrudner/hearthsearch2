@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 
 const initialState = {
 	cards: [],
-	displayCards: 15,
+	displayCards: 50,
 	loading: null
 };
 

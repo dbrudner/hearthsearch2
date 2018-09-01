@@ -1,13 +1,27 @@
 import * as types from "./cards-model";
 
-export const fetchCards = () => {
+const selectValidCards = (cards, params) => {
+	const { hero, format } = params;
+	return cards.filter(({ cardClass }) => {
+		return (
+			cardClass.toLowerCase() === hero.toLowerCase() ||
+			cardClass.toLowerCase() === "neutral"
+		);
+	});
+};
+
+export const fetchCards = params => {
 	return async dispatch => {
 		const localCards = window.localStorage.getItem("cards");
 
 		if (localCards) {
+			console.log(params);
+			const cards = params
+				? selectValidCards(JSON.parse(localCards), params)
+				: JSON.parse(localCards);
 			return dispatch({
 				type: types.FETCHED_RESULTS,
-				payload: JSON.parse(localCards)
+				payload: cards
 			});
 		}
 

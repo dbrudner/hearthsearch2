@@ -7,7 +7,7 @@ import Deck from "./deck";
 
 class BuildDeck extends React.Component<any, any> {
 	componentDidMount() {
-		this.props.fetchCards();
+		this.props.fetchCards({ ...this.props.query });
 	}
 
 	render() {
@@ -33,10 +33,6 @@ class BuildDeck extends React.Component<any, any> {
 	}
 }
 
-BuildDeck.getInitialProps = ({ query }) => {
-	return { query: "blah" };
-};
-
 const mapStateToProps = state => {
 	return {
 		visibleCards: getVisibleCards(state)
@@ -45,7 +41,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchCards: () => dispatch(fetchCards())
+		fetchCards: params => dispatch(fetchCards(params))
 	};
 };
 

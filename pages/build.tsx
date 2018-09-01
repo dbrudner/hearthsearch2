@@ -32,7 +32,7 @@ const Build = (props: any) => {
 	const { format, hero } = props.query;
 
 	if (hero) {
-		return <BuildDeck />;
+		return <BuildDeck {...props} />;
 	}
 
 	if (format) {

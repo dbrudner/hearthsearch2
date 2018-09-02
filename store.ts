@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 
 const rootReducer = combineReducers({
 	cards: searchReducer,
-	deck: buildDeckReducer
+	build: buildDeckReducer
 });
 
 export function initializeStore() {

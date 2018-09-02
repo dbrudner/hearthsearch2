@@ -24,7 +24,7 @@ export const searchReducer = (state = initialState, action) => {
 
 const getDisplayCards = state => state.cards.displayCards;
 const getAllCards = state => state.cards.allCards;
-const getDeckParams = state => state.deck.params;
+const getDeckParams = state => state.build.params;
 
 export const getVisibleCards = createSelector(
 	[getDisplayCards, getAllCards],

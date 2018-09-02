@@ -9,7 +9,7 @@ const initialState = {
 		hero: null,
 		format: null
 	},
-	deck: []
+	deck: {}
 };
 
 export const buildDeckReducer = (state = initialState, action) => {
@@ -18,7 +18,9 @@ export const buildDeckReducer = (state = initialState, action) => {
 	}
 
 	if (action.type === CARD_ADDED) {
-		const quantity = _.keys(state).includes(action.payload.name) ? 2 : 1;
+		const quantity = _.keys(state.deck).includes(action.payload.name)
+			? 2
+			: 1;
 
 		return {
 			...state,
@@ -31,19 +33,32 @@ export const buildDeckReducer = (state = initialState, action) => {
 
 	if (action.type === CARD_REMOVED) {
 		const { payload } = action;
-		if (state[payload].quantity === 2) {
-			const updatedCard = { ...state[payload], quantity: 1 };
-			return { ...state, [payload]: { ...updatedCard } };
+		if (state.deck[payload].quantity === 2) {
+			const updatedCard = {
+				...state.deck[payload],
+				quantity: 1
+			};
+			return {
+				...state,
+				deck: { ...state.deck, [payload]: { ...updatedCard } }
+			};
 		} else {
-			return Object.keys(state).reduce((deck: any, cardName: string) => {
-				if (cardName === payload) {
-					return deck;
+			if (action.type === CARD_REMOVED) {
+				const { payload } = action;
+				if (state.deck[payload].quantity === 2) {
+					const updatedCard = { ...state.deck[payload], quantity: 1 };
+					return {
+						...state,
+						deck: { ...state.deck, [payload]: { ...updatedCard } }
+					};
+				} else {
+					return {
+						...state,
+						deck: _.omit({ ...state.deck }, payload)
+					};
 				}
-				return {
-					...state,
-					deck: { ...deck, [cardName]: { ...state[cardName] } }
-				};
-			}, {});
+				return state;
+			}
 		}
 	}
 

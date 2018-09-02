@@ -1,7 +1,8 @@
+import * as React from "react";
 import { connect } from "react-redux";
-import { getVisibleCards, MORE_CARDS_SELECTED } from "../generic/cards-model";
-import { Button, Collapse } from "antd";
+import { getVisibleCards } from "../generic/cards-model";
 import Cards from "../cards";
+import LoadMoreButton from "../generic/load-more-button";
 
 export interface ResultsProps {
 	visibleCards: any;
@@ -30,13 +31,7 @@ class Results extends React.Component<any, any> {
 		return (
 			<div>
 				<Cards cards={this.props.visibleCards} />
-				<Button
-					onClick={() =>
-						this.props.dispatch({ type: MORE_CARDS_SELECTED })
-					}
-				>
-					Load more
-				</Button>
+				<LoadMoreButton />
 			</div>
 		);
 	}

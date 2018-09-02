@@ -5,11 +5,10 @@ import Cards from "../cards";
 import LoadMoreButton from "../generic/load-more-button";
 
 export interface ResultsProps {
-	visibleCards: any;
-	dispatch: any;
+	visibleCards: number;
 }
 
-class Results extends React.Component<any, any> {
+class Results extends React.Component<ResultsProps> {
 	// componentDidMount() {
 	// 	window.addEventListener("scroll", this.onScroll, false);
 	// }

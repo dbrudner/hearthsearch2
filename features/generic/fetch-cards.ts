@@ -1,6 +1,7 @@
 import * as types from "./cards-model";
+import * as typings from "./typings";
 
-const selectValidCards = (cards, params) => {
+const selectValidCards = (cards: typings.Card[], params: typings.Params) => {
 	const { hero, format } = params;
 	return cards.filter(({ cardClass }) => {
 		return (

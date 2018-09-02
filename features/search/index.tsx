@@ -4,12 +4,10 @@ import { connect } from "react-redux";
 import Results from "./results";
 
 export interface SearchProps {
-	fetchCards: any;
+	fetchCards: () => void;
 }
 
-export interface SearchState {}
-
-class Search extends React.Component<SearchProps, SearchState> {
+class Search extends React.Component<SearchProps> {
 	constructor(props: SearchProps) {
 		super(props);
 	}
@@ -17,8 +15,6 @@ class Search extends React.Component<SearchProps, SearchState> {
 	componentDidMount() {
 		this.props.fetchCards();
 	}
-
-	handleChange = value => {};
 
 	render() {
 		return (

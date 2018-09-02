@@ -2,6 +2,7 @@ import { heroes as colors } from "../features/generic/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
+import * as typings from "../features/generic/typings";
 
 const CLASSES = [
 	"Warrior",
@@ -25,7 +26,11 @@ const classCard = hsClass => {
 	};
 };
 
-const Build = (props: any) => {
+interface props {
+	query: typings.Params;
+}
+
+const Build: React.SFC<props> = props => {
 	const { format, hero } = props.query;
 
 	if (hero) {

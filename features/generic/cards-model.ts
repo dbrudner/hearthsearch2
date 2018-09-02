@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import * as types from "./types";
+import * as typings from "./typings";
 
 export const FETCHED_RESULTS = "FETCHED_RESULTS";
 export const IS_LOADING = "IS_LOADING";
@@ -13,26 +13,13 @@ const initialState = {
 	searchInput: ""
 };
 
-enum Loading {
-	Loading = "LOADING",
-	Loaded = "LOADED",
-	Waiting = "WAITING"
-}
-
-type stateType = {
-	allCards: types.Card[];
-	displayCards: number;
-	loading: Loading;
-	searchInput: string;
-};
-
 type action = {
 	type: string;
-	payload: types.Cards | number | string;
+	payload: typings.Cards | number | string;
 };
 
 export const searchReducer = (
-	state: stateType = initialState,
+	state: typings.CardModel = initialState,
 	action: action
 ) => {
 	if (action.type === FETCHED_RESULTS) {
@@ -50,12 +37,12 @@ export const searchReducer = (
 	return state;
 };
 
-const getDisplayCards = state => state.cards.displayCards;
-const getAllCards = state => state.cards.allCards;
-const getDeckParams = state => state.build.params;
-const getSearchInput = state => state.cards.searchInput;
+const getDisplayCards = (state: typings.State) => state.cards.displayCards;
+const getAllCards = (state: typings.State) => state.cards.allCards;
+const getDeckParams = (state: typings.State) => state.build.params;
+const getSearchInput = (state: typings.State) => state.cards.searchInput;
 
-const searchCards = (cards: types.Card[], searchInput: string) => {
+const searchCards = (cards: typings.Card[], searchInput: string) => {
 	if (searchInput) {
 		return cards.filter(card =>
 			card.name.toLowerCase().match(searchInput.toLowerCase())

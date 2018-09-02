@@ -2,7 +2,11 @@ import { Input } from "antd";
 import * as types from "../generic/cards-model";
 import { connect } from "react-redux";
 
-const SearchInput = props => (
+interface props {
+	updateSearch: (string) => void;
+}
+
+const SearchInput: React.SFC<props> = props => (
 	<Input.Search
 		style={{ width: "20%" }}
 		onChange={e => props.updateSearch(e.target.value)}

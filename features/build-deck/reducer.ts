@@ -2,27 +2,25 @@ import _ from "lodash";
 
 export const CARD_ADDED = "CARD_ADDED";
 export const CARD_REMOVED = "CARD_REMOVED";
+export const DECK_PARAMS_SELECTED = "DECK_PARAMS_SELECTED";
 
 export const buildDeckReducer = (state = [], action) => {
+	if (action.type === DECK_PARAMS_SELECTED) {
+		return { ...state, params: action.payload };
+	}
+
 	if (action.type === CARD_ADDED) {
-		if (_.keys(state).includes(action.payload.name)) {
-			return {
-				...state,
-				[action.payload.name]: { ...action.payload, quantity: 2 }
-			};
-		} else {
-			return {
-				...state,
-				[action.payload.name]: { ...action.payload, quantity: 1 }
-			};
-		}
+		const quantity = _.keys(state).includes(action.payload.name) ? 2 : 1;
+
+		return {
+			...state,
+			[action.payload.name]: { ...action.payload, quantity }
+		};
 	}
 
 	if (action.type === CARD_REMOVED) {
 		const { payload } = action;
-		console.log(state);
 		if (state[payload].quantity === 2) {
-			// Two lines for readability. I'm surprised how complicated this was to do
 			const updatedCard = { ...state[payload], quantity: 1 };
 			return { ...state, [payload]: { ...updatedCard } };
 		} else {

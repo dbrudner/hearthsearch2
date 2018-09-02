@@ -10,15 +10,12 @@ const selectValidCards = (cards, params) => {
 	});
 };
 
-export const fetchCards = params => {
+export const fetchCards = () => {
 	return async dispatch => {
 		const localCards = window.localStorage.getItem("cards");
 
 		if (localCards) {
-			console.log(params);
-			const cards = params
-				? selectValidCards(JSON.parse(localCards), params)
-				: JSON.parse(localCards);
+			const cards = JSON.parse(localCards);
 			return dispatch({
 				type: types.FETCHED_RESULTS,
 				payload: cards

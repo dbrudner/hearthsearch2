@@ -3,11 +3,14 @@ import Cards from "../cards";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import { getVisibleCards } from "../generic/cards-model";
+import * as types from "./reducer";
 import Deck from "./deck";
 
 class BuildDeck extends React.Component<any, any> {
-	componentDidMount() {
-		this.props.fetchCards({ ...this.props.query });
+	async componentDidMount() {
+		console.log(this.props);
+		await this.props.setDeckParams({ ...this.props.query });
+		await this.props.fetchCards();
 	}
 
 	render() {
@@ -41,7 +44,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
 	return {
-		fetchCards: params => dispatch(fetchCards(params))
+		fetchCards: () => dispatch(fetchCards()),
+		setDeckParams: params =>
+			dispatch({ type: types.DECK_PARAMS_SELECTED, payload: params })
 	};
 };
 

@@ -12,6 +12,7 @@ const selectValidCards = (cards, params) => {
 
 export const fetchCards = () => {
 	return async dispatch => {
+		dispatch({ type: types.IS_LOADING });
 		const localCards = window.localStorage.getItem("cards");
 
 		if (localCards) {
@@ -21,8 +22,6 @@ export const fetchCards = () => {
 				payload: cards
 			});
 		}
-
-		dispatch({ type: types.IS_LOADING });
 
 		const data = await fetch(
 			"https://api.hearthstonejson.com/v1/25770/enUS/cards.collectible.json"

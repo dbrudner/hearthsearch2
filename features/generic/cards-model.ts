@@ -7,7 +7,11 @@ export const MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED";
 const initialState = {
 	allCards: [],
 	displayCards: 50,
-	loading: null
+	loading: null,
+	params: {
+		hero: null,
+		format: null
+	}
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -30,5 +34,24 @@ export const getVisibleCards = createSelector(
 	[getDisplayCards, getAllCards],
 	(displayCards, allCards) => {
 		return allCards.slice(0, displayCards);
+	}
+);
+
+const selectValidCards = (cards, params) => {
+	const { hero, format } = params;
+	return cards.filter(({ cardClass }) => {
+		return (
+			cardClass.toLowerCase() === hero.toLowerCase() ||
+			cardClass.toLowerCase() === "neutral"
+		);
+	});
+};
+
+export const getVisibleDeckCards = createSelector(
+	[getDisplayCards, getAllCards, getDeckParams],
+	(displayCards, allCards, deckParams) => {
+		console.log(deckParams);
+		const validCards = selectValidCards(allCards, deckParams);
+		return validCards.slice(0, displayCards);
 	}
 );

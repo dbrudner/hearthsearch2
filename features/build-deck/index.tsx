@@ -2,13 +2,12 @@ import * as React from "react";
 import Cards from "../cards";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
-import { getVisibleCards } from "../generic/cards-model";
+import { getVisibleDeckCards } from "../generic/cards-model";
 import * as types from "./reducer";
 import Deck from "./deck";
 
 class BuildDeck extends React.Component<any, any> {
 	async componentDidMount() {
-		console.log(this.props);
 		await this.props.setDeckParams({ ...this.props.query });
 		await this.props.fetchCards();
 	}
@@ -38,7 +37,7 @@ class BuildDeck extends React.Component<any, any> {
 
 const mapStateToProps = state => {
 	return {
-		visibleCards: getVisibleCards(state)
+		visibleCards: getVisibleDeckCards(state)
 	};
 };
 

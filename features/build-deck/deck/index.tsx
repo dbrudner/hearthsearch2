@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import _ from "lodash";
-import * as types from "../reducer";
+import * as types from "../model";
 
 const Deck = props => (
 	<ul>

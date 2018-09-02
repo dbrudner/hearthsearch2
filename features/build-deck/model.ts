@@ -4,7 +4,15 @@ export const CARD_ADDED = "CARD_ADDED";
 export const CARD_REMOVED = "CARD_REMOVED";
 export const DECK_PARAMS_SELECTED = "DECK_PARAMS_SELECTED";
 
-export const buildDeckReducer = (state = [], action) => {
+const initialState = {
+	params: {
+		hero: null,
+		format: null
+	},
+	deck: []
+};
+
+export const buildDeckReducer = (state = initialState, action) => {
 	if (action.type === DECK_PARAMS_SELECTED) {
 		return { ...state, params: action.payload };
 	}
@@ -14,7 +22,10 @@ export const buildDeckReducer = (state = [], action) => {
 
 		return {
 			...state,
-			[action.payload.name]: { ...action.payload, quantity }
+			deck: {
+				...state.deck,
+				[action.payload.name]: { ...action.payload, quantity }
+			}
 		};
 	}
 
@@ -28,7 +39,10 @@ export const buildDeckReducer = (state = [], action) => {
 				if (cardName === payload) {
 					return deck;
 				}
-				return { ...deck, [cardName]: { ...state[cardName] } };
+				return {
+					...state,
+					deck: { ...deck, [cardName]: { ...state[cardName] } }
+				};
 			}, {});
 		}
 	}

@@ -3,7 +3,7 @@ import Cards from "../cards";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import { getVisibleDeckCards } from "../generic/cards-model";
-import * as types from "./reducer";
+import * as types from "./model";
 import Deck from "./deck";
 
 class BuildDeck extends React.Component<any, any> {

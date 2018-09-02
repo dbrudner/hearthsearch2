@@ -7,11 +7,7 @@ export const MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED";
 const initialState = {
 	allCards: [],
 	displayCards: 50,
-	loading: null,
-	params: {
-		hero: null,
-		format: null
-	}
+	loading: null
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -50,7 +46,6 @@ const selectValidCards = (cards, params) => {
 export const getVisibleDeckCards = createSelector(
 	[getDisplayCards, getAllCards, getDeckParams],
 	(displayCards, allCards, deckParams) => {
-		console.log(deckParams);
 		const validCards = selectValidCards(allCards, deckParams);
 		return validCards.slice(0, displayCards);
 	}

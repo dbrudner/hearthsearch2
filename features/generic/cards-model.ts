@@ -3,11 +3,13 @@ import { createSelector } from "reselect";
 export const FETCHED_RESULTS = "FETCHED_RESULTS";
 export const IS_LOADING = "IS_LOADING";
 export const MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED";
+export const UPDATED_SEARCH = "UPDATED_SEARCH";
 
 const initialState = {
 	allCards: [],
 	displayCards: 50,
-	loading: null
+	loading: null,
+	searchInput: ""
 };
 
 export const searchReducer = (state = initialState, action) => {
@@ -19,18 +21,31 @@ export const searchReducer = (state = initialState, action) => {
 		return { ...state, displayCards: state.displayCards + 15 };
 	}
 
+	if (action.type === UPDATED_SEARCH) {
+		return { ...state, searchInput: action.payload };
+	}
+
 	return state;
 };
 
 const getDisplayCards = state => state.cards.displayCards;
 const getAllCards = state => state.cards.allCards;
 const getDeckParams = state => state.build.params;
+const getSearchInput = state => state.cards.searchInput;
+
+const searchCards = (cards, searchInput) => {
+	if (searchInput) {
+		return cards.filter(card =>
+			card.name.toLowerCase().match(searchInput.toLowerCase())
+		);
+	}
+	return cards;
+};
 
 export const getVisibleCards = createSelector(
-	[getDisplayCards, getAllCards],
-	(displayCards, allCards) => {
-		return allCards.slice(0, displayCards);
-	}
+	[getSearchInput, getDisplayCards, getAllCards],
+	(searchInput, displayCards, allCards) =>
+		searchCards(allCards, searchInput).slice(0, displayCards)
 );
 
 const selectValidCards = (cards, params) => {
@@ -44,9 +59,12 @@ const selectValidCards = (cards, params) => {
 };
 
 export const getVisibleDeckCards = createSelector(
-	[getDisplayCards, getAllCards, getDeckParams],
-	(displayCards, allCards, deckParams) => {
-		const validCards = selectValidCards(allCards, deckParams);
+	[getSearchInput, getDisplayCards, getAllCards, getDeckParams],
+	(searchInput, displayCards, allCards, deckParams) => {
+		const validCards = selectValidCards(
+			searchCards(allCards, searchInput),
+			deckParams
+		);
 		return validCards.slice(0, displayCards);
 	}
 );

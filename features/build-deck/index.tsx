@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { getVisibleDeckCards } from "../generic/cards-model";
 import * as types from "./model";
 import Deck from "./deck";
+import SearchInput from "../generic/search-input";
 
 class BuildDeck extends React.Component<any, any> {
 	async componentDidMount() {
@@ -27,6 +28,9 @@ class BuildDeck extends React.Component<any, any> {
 					<Deck />
 				</div>
 				<div style={{ marginLeft: "20vw" }}>
+					<div style={{ margin: "20px" }}>
+						<SearchInput style={{ width: "20%" }} />
+					</div>
 					<Cards cards={this.props.visibleCards} />;
 				</div>
 			</div>

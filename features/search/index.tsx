@@ -2,6 +2,8 @@ import * as React from "react";
 import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import Results from "./results";
+import { Input } from "antd";
+import * as types from "../generic/cards-model";
 
 export interface SearchProps {
 	fetchCards: any;
@@ -18,10 +20,13 @@ class Search extends React.Component<SearchProps, SearchState> {
 		this.props.fetchCards();
 	}
 
+	handleChange = value => {};
+
 	render() {
 		return (
 			<React.Fragment>
 				<h1>Search</h1>
+				<Input onChange={e => this.handleChange(e.target.value)} />
 				<Results />
 			</React.Fragment>
 		);
@@ -30,5 +35,7 @@ class Search extends React.Component<SearchProps, SearchState> {
 
 export default connect(
 	null,
-	dispatch => ({ fetchCards: () => dispatch(fetchCards()) })
+	dispatch => ({
+		fetchCards: () => dispatch(fetchCards())
+	})
 )(Search);

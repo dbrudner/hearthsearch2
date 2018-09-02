@@ -1,10 +1,7 @@
-import { Card } from "antd";
 import { heroes as colors } from "../features/generic/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
-
-const { Meta } = Card;
 
 const CLASSES = [
 	"Warrior",

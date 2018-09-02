@@ -24,7 +24,6 @@ class BuildDeck extends React.Component<any, any> {
 						backgroundColor: "white"
 					}}
 				>
-					asdf
 					<Deck />
 				</div>
 				<div style={{ marginLeft: "20vw" }}>

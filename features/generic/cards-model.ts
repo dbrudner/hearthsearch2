@@ -42,7 +42,7 @@ export const searchReducer = (
 
 	return state;
 };
-const getDeckParams = (state: typings.State) => state.build.params;
+
 const getFilters = (state: typings.State) => {
 	return [
 		{ filterName: "name", value: state.cards.name },
@@ -54,8 +54,6 @@ const getItem = item => (state: typings.State) => state.cards[item];
 
 const getDisplayCards = getItem("displayCards");
 const getAllCards = getItem("allCards");
-const getName = getItem("name");
-const getCardClass = getItem("cardClass");
 
 const searchCards = (
 	cards: typings.Card[],
@@ -64,7 +62,6 @@ const searchCards = (
 		value: string;
 	}[]
 ) => {
-	console.log(filters);
 	return cards.filter(card => {
 		return filters.every(filter => {
 			return card[filter.filterName]
@@ -78,27 +75,6 @@ export const getVisibleCards = createSelector(
 	[getFilters, getDisplayCards, getAllCards],
 	(filters, displayCards, allCards) => {
 		return searchCards(allCards, filters).slice(0, displayCards);
-	}
-);
-
-const selectValidCards = (cards, params) => {
-	const { hero, format } = params;
-	return cards.filter(({ cardClass }) => {
-		return (
-			cardClass.toLowerCase() === hero.toLowerCase() ||
-			cardClass.toLowerCase() === "neutral"
-		);
-	});
-};
-
-export const getVisibleDeckCards = createSelector(
-	[getName, getDisplayCards, getAllCards, getDeckParams],
-	(name, displayCards, allCards, deckParams) => {
-		const validCards = selectValidCards(
-			searchCards(allCards, "name", name),
-			deckParams
-		);
-		return validCards.slice(0, displayCards);
 	}
 );
 

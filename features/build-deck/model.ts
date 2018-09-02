@@ -2,7 +2,6 @@ import _ from "lodash";
 
 export const CARD_ADDED = "CARD_ADDED";
 export const CARD_REMOVED = "CARD_REMOVED";
-export const DECK_PARAMS_SELECTED = "DECK_PARAMS_SELECTED";
 
 const initialState = {
 	params: {
@@ -13,10 +12,6 @@ const initialState = {
 };
 
 export const buildDeckReducer = (state = initialState, action) => {
-	if (action.type === DECK_PARAMS_SELECTED) {
-		return { ...state, params: action.payload };
-	}
-
 	if (action.type === CARD_ADDED) {
 		const quantity = _.keys(state.deck).includes(action.payload.name)
 			? 2

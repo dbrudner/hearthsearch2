@@ -1,4 +1,5 @@
 import { createSelector } from "reselect";
+import * as types from "./types";
 
 export const FETCHED_RESULTS = "FETCHED_RESULTS";
 export const IS_LOADING = "IS_LOADING";
@@ -12,7 +13,28 @@ const initialState = {
 	searchInput: ""
 };
 
-export const searchReducer = (state = initialState, action) => {
+enum Loading {
+	Loading = "LOADING",
+	Loaded = "LOADED",
+	Waiting = "WAITING"
+}
+
+type stateType = {
+	allCards: types.Card[];
+	displayCards: number;
+	loading: Loading;
+	searchInput: string;
+};
+
+type action = {
+	type: string;
+	payload: types.Cards | number | string;
+};
+
+export const searchReducer = (
+	state: stateType = initialState,
+	action: action
+) => {
 	if (action.type === FETCHED_RESULTS) {
 		return { ...state, allCards: action.payload, loading: false };
 	}
@@ -33,7 +55,7 @@ const getAllCards = state => state.cards.allCards;
 const getDeckParams = state => state.build.params;
 const getSearchInput = state => state.cards.searchInput;
 
-const searchCards = (cards, searchInput) => {
+const searchCards = (cards: types.Card[], searchInput: string) => {
 	if (searchInput) {
 		return cards.filter(card =>
 			card.name.toLowerCase().match(searchInput.toLowerCase())

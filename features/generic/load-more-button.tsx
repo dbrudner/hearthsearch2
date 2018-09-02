@@ -3,7 +3,11 @@ import * as types from "../generic/cards-model";
 import { connect } from "react-redux";
 
 interface props {
-	dispatch: ({ type: string }) => void;
+	dispatch: (
+		action: {
+			type: string;
+		}
+	) => void;
 }
 
 const LoadMoreButton: React.SFC<props> = ({ dispatch }) => (

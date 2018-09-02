@@ -27,6 +27,7 @@ class Results extends React.Component<ResultsProps> {
 	// };
 
 	render() {
+		console.log(this.props);
 		return (
 			<div>
 				<Cards cards={this.props.visibleCards} />

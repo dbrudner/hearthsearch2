@@ -13,7 +13,8 @@ export interface CardModel {
 	allCards: Card[];
 	displayCards: number;
 	loading: Loading;
-	searchInput: string;
+	name: string;
+	cardClass: string;
 }
 
 export interface BuildModel {

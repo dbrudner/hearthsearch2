@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import * as types from "../generic/cards-model";
+import { doSearchUpdate } from "../generic/cards-model";
 import { connect } from "react-redux";
 
 interface props {
@@ -17,8 +17,9 @@ export default connect(
 	null,
 	dispatch => {
 		return {
-			updateSearch: (value: string) =>
-				dispatch({ type: types.UPDATED_SEARCH, payload: value })
+			updateSearch(value) {
+				dispatch(doSearchUpdate("name", value));
+			}
 		};
 	}
 )(SearchInput);

@@ -2,8 +2,7 @@ import { Collapse, Button } from "antd";
 import { heroes as colors } from "../generic/colors";
 import { connect } from "react-redux";
 import * as types from "../build-deck/model";
-
-const capitalize = string => string.charAt(0) + string.substr(1).toLowerCase();
+import { capitalize } from "../generic/helpers";
 
 const Title = props => {
 	const handleClick = e => {

@@ -10,12 +10,18 @@ const initialState = {
 	allCards: [],
 	displayCards: 50,
 	loading: null,
-	searchInput: ""
+	name: "",
+	cardClass: ""
+};
+
+type searchPayload = {
+	filterType: string;
+	value: string | number;
 };
 
 type action = {
 	type: string;
-	payload: typings.Cards | number | string;
+	payload: any;
 };
 
 export const searchReducer = (
@@ -31,30 +37,48 @@ export const searchReducer = (
 	}
 
 	if (action.type === UPDATED_SEARCH) {
-		return { ...state, searchInput: action.payload };
+		return { ...state, [action.payload.filterType]: action.payload.value };
 	}
 
 	return state;
 };
-
-const getDisplayCards = (state: typings.State) => state.cards.displayCards;
-const getAllCards = (state: typings.State) => state.cards.allCards;
 const getDeckParams = (state: typings.State) => state.build.params;
-const getSearchInput = (state: typings.State) => state.cards.searchInput;
+const getFilters = (state: typings.State) => {
+	return [
+		{ filterName: "name", value: state.cards.name },
+		{ filterName: "cardClass", value: state.cards.cardClass }
+	];
+};
 
-const searchCards = (cards: typings.Card[], searchInput: string) => {
-	if (searchInput) {
-		return cards.filter(card =>
-			card.name.toLowerCase().match(searchInput.toLowerCase())
-		);
-	}
-	return cards;
+const getItem = item => (state: typings.State) => state.cards[item];
+
+const getDisplayCards = getItem("displayCards");
+const getAllCards = getItem("allCards");
+const getName = getItem("name");
+const getCardClass = getItem("cardClass");
+
+const searchCards = (
+	cards: typings.Card[],
+	filters: {
+		filterName: string;
+		value: string;
+	}[]
+) => {
+	console.log(filters);
+	return cards.filter(card => {
+		return filters.every(filter => {
+			return card[filter.filterName]
+				.toLowerCase()
+				.match(filter.value.toLowerCase());
+		});
+	});
 };
 
 export const getVisibleCards = createSelector(
-	[getSearchInput, getDisplayCards, getAllCards],
-	(searchInput, displayCards, allCards) =>
-		searchCards(allCards, searchInput).slice(0, displayCards)
+	[getFilters, getDisplayCards, getAllCards],
+	(filters, displayCards, allCards) => {
+		return searchCards(allCards, filters).slice(0, displayCards);
+	}
 );
 
 const selectValidCards = (cards, params) => {
@@ -68,12 +92,22 @@ const selectValidCards = (cards, params) => {
 };
 
 export const getVisibleDeckCards = createSelector(
-	[getSearchInput, getDisplayCards, getAllCards, getDeckParams],
-	(searchInput, displayCards, allCards, deckParams) => {
+	[getName, getDisplayCards, getAllCards, getDeckParams],
+	(name, displayCards, allCards, deckParams) => {
 		const validCards = selectValidCards(
-			searchCards(allCards, searchInput),
+			searchCards(allCards, "name", name),
 			deckParams
 		);
 		return validCards.slice(0, displayCards);
 	}
 );
+
+export const doSearchUpdate = (filterType: string, value: string | number) => {
+	return {
+		type: UPDATED_SEARCH,
+		payload: {
+			filterType,
+			value
+		}
+	};
+};

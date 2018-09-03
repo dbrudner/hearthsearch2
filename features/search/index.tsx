@@ -27,6 +27,7 @@ class Search extends React.Component<SearchProps> {
 				<Filters.Type />
 				<Filters.Set />
 				<Filters.Rarity />
+				<Filters.Race />
 				<Results />
 			</React.Fragment>
 		);

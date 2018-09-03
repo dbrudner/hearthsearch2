@@ -57,7 +57,8 @@ const getFilters = (state: typings.State) => {
 		{ filterName: "cardClass", value: state.cards.cardClass },
 		{ filterName: "type", value: state.cards.type },
 		{ filterName: "rarity", value: state.cards.rarity },
-		{ filterName: "set", value: state.cards.set }
+		{ filterName: "set", value: state.cards.set },
+		{ filterName: "race", value: state.cards.race }
 	];
 };
 
@@ -73,6 +74,10 @@ const searchCards = (
 ) => {
 	return cards.filter(card => {
 		return filters.every(filter => {
+			if (!card[filter.filterName]) {
+				return false;
+			}
+
 			return card[filter.filterName]
 				.toLowerCase()
 				.match(filter.value.toLowerCase());

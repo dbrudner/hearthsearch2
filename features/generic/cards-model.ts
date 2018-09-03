@@ -75,10 +75,15 @@ const searchCards = (
 		value: string;
 	}[]
 ) => {
-	console.log(filters);
-	return cards.filter(card => {
+	console.log(cards.length);
+	const x = cards.filter(card => {
 		return filters.every(filter => {
+			if (!filter.value) {
+				return true;
+			}
+
 			if (filter.filterName === "search") {
+				return true;
 				// Card name concat with card text to search through both
 				const searchable = card.name + " " + (card.text || "");
 
@@ -96,6 +101,9 @@ const searchCards = (
 				.match(filter.value.toLowerCase());
 		});
 	});
+	console.log(filters);
+	console.log(x);
+	return x;
 };
 
 export const getVisibleCards = createSelector(

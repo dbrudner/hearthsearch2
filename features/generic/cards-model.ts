@@ -17,7 +17,10 @@ const initialState = {
 	race: "",
 	set: "",
 	rarity: "",
-	text: ""
+	text: "",
+	cost: null,
+	health: null,
+	attack: null
 };
 
 type searchPayload = {
@@ -61,7 +64,10 @@ const getFilters = (state: typings.State) => {
 		{ filterName: "rarity", value: state.cards.rarity },
 		{ filterName: "set", value: state.cards.set },
 		{ filterName: "race", value: state.cards.race },
-		{ filterName: "text", value: state.cards.text }
+		{ filterName: "text", value: state.cards.text },
+		{ filterName: "cost", value: state.cards.cost },
+		{ filterName: "health", value: state.cards.health },
+		{ filterName: "attack", value: state.cards.attack }
 	];
 };
 
@@ -99,6 +105,13 @@ const searchCards = (
 
 			if (!card[filter.filterName]) {
 				return false;
+			}
+
+			if (typeof card[filter.filterName] === "number") {
+				if (filter.value === "10+") {
+					return card[filter.filterName] > 10;
+				}
+				return card[filter.filterName] === parseInt(filter.value);
 			}
 
 			// Returns true if the card and filter contain the same value

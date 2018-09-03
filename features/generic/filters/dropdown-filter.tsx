@@ -1,7 +1,6 @@
 import { Select } from "antd";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { capitalize } from "../helpers";
 import { doSearchUpdate } from "../cards-model";
 
 const Option = Select.Option;

@@ -39,3 +39,22 @@ export const Ability = DropdownFilter(
 	"text",
 	convertKeys(Object.keys(typings.Ability))
 );
+
+const numberArr = [
+	"0",
+	"1",
+	"2",
+	" 3",
+	"4",
+	"5",
+	"6",
+	"7",
+	"8",
+	"9",
+	"10",
+	"10+"
+];
+
+export const Cost = DropdownFilter("cost", convertKeys(numberArr));
+export const Health = DropdownFilter("health", convertKeys(numberArr.slice(1)));
+export const Attack = DropdownFilter("attack", convertKeys(numberArr));

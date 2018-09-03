@@ -6,7 +6,9 @@ import { doSearchUpdate } from "../cards-model";
 
 const Option = Select.Option;
 
-const DropDownFilter = (filterName, options) => {
+type options = { name: string; value: string }[];
+
+const DropDownFilter = (filterName: string, options: options) => {
 	const Component = props => {
 		const handleChange = value => props.search(filterName, value);
 
@@ -18,8 +20,8 @@ const DropDownFilter = (filterName, options) => {
 			>
 				<Option value="">None</Option>
 				{_.map(options, option => (
-					<Option value={option.toLowerCase()}>
-						{capitalize(option)}
+					<Option value={option.value.toLowerCase()}>
+						{option.name}
 					</Option>
 				))}
 			</Select>

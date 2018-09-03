@@ -114,23 +114,23 @@ export enum Rarity {
 }
 
 export enum Set {
-	BRM = "BRM",
-	Boomsday = "BOOMSDAY",
-	Core = "CORE",
-	Expert1 = "EXPERT1",
-	Gangs = "GANGS",
-	Gilneas = "GILNEAS",
-	Gvg = "GVG",
-	HeroSkins = "HERO_SKINS",
-	Hof = "HOF",
+	"Blackrock Mountain" = "BRM",
+	"The Boomsday Project" = "BOOMSDAY",
+	Basic = "CORE",
+	Classic = "EXPERT1",
+	"Mean Streets of Gadgetzan" = "GANGS",
+	"The Witchwood" = "GILNEAS",
+	"Goblins vs Gnomes" = "GVG",
+	"Hero Skins" = "HERO_SKINS",
+	"Hall of Fame" = "HOF",
 	Icecrown = "ICECROWN",
-	Kara = "KARA",
-	Loe = "LOE",
-	Lootapalooza = "LOOTAPALOOZA",
-	Naxx = "NAXX",
-	Og = "OG",
-	Tgt = "TGT",
-	Ungoro = "UNGORO"
+	"One Night in Karazhan" = "KARA",
+	"The League of Explorers" = "LOE",
+	"Kobolds and Catacombs" = "LOOTAPALOOZA",
+	"Curse of Naxxramas" = "NAXX",
+	"Whispers of the Old Gods" = "OG",
+	"The Grand Tournament" = "TGT",
+	"Journey to Un'Goro" = "UNGORO"
 }
 
 export enum Type {

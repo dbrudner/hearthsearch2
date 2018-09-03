@@ -75,15 +75,20 @@ const searchCards = (
 		value: string;
 	}[]
 ) => {
-	console.log(cards.length);
-	const x = cards.filter(card => {
+	// Filter all cards
+	return cards.filter(card => {
+		// Iterates through every filter
+		// Returns a boolean:
+		// If the card passes every filter, returns true
+		// If the card doesn't pass one or more filters, return false
 		return filters.every(filter => {
+			// If there is no filter, skip to the next
 			if (!filter.value) {
 				return true;
 			}
 
+			// This filter goes first because "search" is not a prop on card
 			if (filter.filterName === "search") {
-				return true;
 				// Card name concat with card text to search through both
 				const searchable = card.name + " " + (card.text || "");
 
@@ -96,14 +101,12 @@ const searchCards = (
 				return false;
 			}
 
+			// Returns true if the card and filter contain the same value
 			return card[filter.filterName]
 				.toLowerCase()
 				.match(filter.value.toLowerCase());
 		});
 	});
-	console.log(filters);
-	console.log(x);
-	return x;
 };
 
 export const getVisibleCards = createSelector(

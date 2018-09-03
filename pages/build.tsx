@@ -4,18 +4,6 @@ import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
 import * as typings from "../features/generic/typings";
 
-const CLASSES = [
-	"Warrior",
-	"Shaman",
-	"Rogue",
-	"Paladin",
-	"Hunter",
-	"Druid",
-	"Warlock",
-	"Mage",
-	"Priest"
-];
-
 const classCard = hsClass => {
 	return {
 		borderRadius: "5px",
@@ -48,7 +36,7 @@ const Build: React.SFC<props> = props => {
 						marginLeft: "30vw"
 					}}
 				>
-					{CLASSES.map((hsClass: string) => (
+					{Object.keys(typings.CardClass).map((hsClass: string) => (
 						<Link href={`/build?format=${format}&hero=${hsClass}`}>
 							<div style={classCard(hsClass)}>
 								<h2

@@ -19,6 +19,7 @@ export interface CardModel {
 	race: string;
 	rarity: string;
 	set: string;
+	text?: string;
 }
 
 export interface BuildModel {
@@ -137,4 +138,37 @@ export enum Type {
 	Minion = "MINION",
 	Spell = "SPELL",
 	Weapon = "WEAPON"
+}
+
+export enum Ability {
+	Adapt = "Adapt",
+	Battlecry = "Battlecry",
+	Charge = "Charge",
+	"Choose One" = "Choose One",
+	"Choose Twice" = "Choose Twice",
+	Combo = "Combo",
+	Counter = "Counter",
+	Deathrattle = "Deathrattle",
+	Discover = "Discover",
+	"Divine Shield" = "Divine Shield",
+	Echo = "Echo",
+	Freeze = "Freeze",
+	Immune = "Immune",
+	Inspire = "Inspire",
+	Lifesteal = "Lifesteal",
+	Magnetic = "Magnetic",
+	"Mega Windfury" = "Mega Windfury",
+	Overload = "Overload",
+	Passive = "Passive",
+	Poisonous = "Poisonous",
+	Quest = "Quest",
+	Recruit = "Recruit",
+	Rush = "Rush",
+	Secret = "Secret",
+	Silence = "Silence",
+	"Start of Game" = "Start of Game",
+	Stealth = "Stealth",
+	"Spell Damage" = "Spell Damage",
+	Taunt = "Taunt",
+	Windfury = "Windfury"
 }

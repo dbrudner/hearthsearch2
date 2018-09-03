@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import * as typings from "./typings";
+import search from "../search";
 
 export const FETCHED_RESULTS = "FETCHED_RESULTS";
 export const IS_LOADING = "IS_LOADING";
@@ -15,7 +16,8 @@ const initialState = {
 	type: "",
 	race: "",
 	set: "",
-	rarity: ""
+	rarity: "",
+	text: ""
 };
 
 type searchPayload = {
@@ -53,12 +55,13 @@ export const searchReducer = (
 
 const getFilters = (state: typings.State) => {
 	return [
-		{ filterName: "name", value: state.cards.name },
+		{ filterName: "search", value: state.cards.name },
 		{ filterName: "cardClass", value: state.cards.cardClass },
 		{ filterName: "type", value: state.cards.type },
 		{ filterName: "rarity", value: state.cards.rarity },
 		{ filterName: "set", value: state.cards.set },
-		{ filterName: "race", value: state.cards.race }
+		{ filterName: "race", value: state.cards.race },
+		{ filterName: "text", value: state.cards.text }
 	];
 };
 
@@ -72,8 +75,18 @@ const searchCards = (
 		value: string;
 	}[]
 ) => {
+	console.log(filters);
 	return cards.filter(card => {
 		return filters.every(filter => {
+			if (filter.filterName === "search") {
+				// Card name concat with card text to search through both
+				const searchable = card.name + " " + (card.text || "");
+
+				return searchable
+					.toLowerCase()
+					.match(filter.value.toLowerCase());
+			}
+
 			if (!card[filter.filterName]) {
 				return false;
 			}

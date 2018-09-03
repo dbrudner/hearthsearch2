@@ -6,3 +6,4 @@ export const Type = DropdownFilter("type", Object.keys(typings.Type));
 export const Race = DropdownFilter("race", Object.keys(typings.Race));
 export const Rarity = DropdownFilter("rarity", Object.keys(typings.Rarity));
 export const Set = DropdownFilter("set", Object.keys(typings.Set));
+export const Ability = DropdownFilter("text", Object.keys(typings.Ability));

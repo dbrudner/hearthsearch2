@@ -50,10 +50,8 @@ const getFilters = (state: typings.State) => {
 	];
 };
 
-const getItem = item => (state: typings.State) => state.cards[item];
-
-const getDisplayCards = getItem("displayCards");
-const getAllCards = getItem("allCards");
+const getDisplayCards = state => state.cards.displayCards;
+const getAllCards = state => state.cards.allCards;
 
 const searchCards = (
 	cards: typings.Card[],

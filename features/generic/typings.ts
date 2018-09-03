@@ -16,6 +16,9 @@ export interface CardModel {
 	name: string;
 	cardClass: string;
 	type: string;
+	race: string;
+	rarity: string;
+	set: string;
 }
 
 export interface BuildModel {

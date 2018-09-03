@@ -12,7 +12,10 @@ const initialState = {
 	loading: null,
 	name: "",
 	cardClass: "",
-	type: ""
+	type: "",
+	race: "",
+	set: "",
+	rarity: ""
 };
 
 type searchPayload = {
@@ -52,7 +55,9 @@ const getFilters = (state: typings.State) => {
 	return [
 		{ filterName: "name", value: state.cards.name },
 		{ filterName: "cardClass", value: state.cards.cardClass },
-		{ filterName: "type", value: state.cards.type }
+		{ filterName: "type", value: state.cards.type },
+		{ filterName: "rarity", value: state.cards.rarity },
+		{ filterName: "set", value: state.cards.set }
 	];
 };
 

@@ -8,7 +8,7 @@ export const UPDATED_SEARCH = "UPDATED_SEARCH";
 
 const initialState = {
 	allCards: [],
-	displayCards: 50,
+	displayCards: 25,
 	loading: null,
 	name: "",
 	cardClass: ""
@@ -37,7 +37,11 @@ export const searchReducer = (
 	}
 
 	if (action.type === UPDATED_SEARCH) {
-		return { ...state, [action.payload.filterType]: action.payload.value };
+		return {
+			...state,
+			displayCards: 50,
+			[action.payload.filterType]: action.payload.value
+		};
 	}
 
 	return state;

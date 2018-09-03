@@ -15,6 +15,7 @@ export interface CardModel {
 	loading: Loading;
 	name: string;
 	cardClass: string;
+	type: string;
 }
 
 export interface BuildModel {

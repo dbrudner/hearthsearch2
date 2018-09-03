@@ -31,7 +31,6 @@ class Results extends React.Component<ResultsProps> {
 		return (
 			<div>
 				<Cards cards={this.props.visibleCards} />
-				<LoadMoreButton />
 			</div>
 		);
 	}

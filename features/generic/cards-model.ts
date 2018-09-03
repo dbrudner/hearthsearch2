@@ -11,7 +11,8 @@ const initialState = {
 	displayCards: 25,
 	loading: null,
 	name: "",
-	cardClass: ""
+	cardClass: "",
+	type: ""
 };
 
 type searchPayload = {
@@ -50,7 +51,8 @@ export const searchReducer = (
 const getFilters = (state: typings.State) => {
 	return [
 		{ filterName: "name", value: state.cards.name },
-		{ filterName: "cardClass", value: state.cards.cardClass }
+		{ filterName: "cardClass", value: state.cards.cardClass },
+		{ filterName: "type", value: state.cards.type }
 	];
 };
 

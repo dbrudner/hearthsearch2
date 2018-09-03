@@ -3,7 +3,7 @@ import { fetchCards } from "../generic/fetch-cards";
 import { connect } from "react-redux";
 import Results from "./results";
 import SearchInput from "../generic/search-input";
-import Hero from "../generic/filters/hero";
+import * as Filters from "../generic/filters/dropdowns";
 
 export interface SearchProps {
 	fetchCards: () => void;
@@ -23,7 +23,8 @@ class Search extends React.Component<SearchProps> {
 			<React.Fragment>
 				<h1>Search</h1>
 				<SearchInput />
-				<Hero />
+				<Filters.Hero />
+				<Filters.Type />
 				<Results />
 			</React.Fragment>
 		);

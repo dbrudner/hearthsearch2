@@ -78,7 +78,7 @@ const searchCards = (
 	cards: typings.Card[],
 	filters: {
 		filterName: string;
-		value: string;
+		value: string | number;
 	}[]
 ) => {
 	// Filter all cards

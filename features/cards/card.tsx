@@ -1,15 +1,16 @@
 import { Button, Icon } from "antd";
 
-export default ({ cost, name, health, attack }) => (
+export default ({ cost, name, health, attack, text }) => (
 	<>
 		<div className="card">
 			<div className="cost">{cost}</div>
 			<div className="show-more">
 				<Button type="primary">
-					<Icon type="ellipsis" theme="outlined" />
+					<Icon type="ellipsis" />
 				</Button>
 			</div>
 			<div className="name">{name}</div>
+			<div className="card-text">{text}</div>
 			{attack && (
 				<div className="attack">
 					<div className="stat-attack">
@@ -39,7 +40,9 @@ export default ({ cost, name, health, attack }) => (
 				z-index: 1;
 				bottom: 5px;
 				right: calc(-90px / 2);
-				color: #282c5d;
+				-webkit-text-stroke: 1px black;
+				color: white;
+				font-weight: 700;
 				border: 2px solid #282c5d;
 				background: linear-gradient(135deg, #f2e974 0%, #606637 100%);
 				width: 35px;
@@ -61,7 +64,9 @@ export default ({ cost, name, health, attack }) => (
 				z-index: 1;
 				bottom: 5px;
 				left: calc(-64px / 2);
+				-webkit-text-stroke: 1px black;
 				color: white;
+				font-weight: 700;
 			}
 
 			.attack {

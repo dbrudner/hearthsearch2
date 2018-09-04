@@ -1,6 +1,5 @@
 import { createSelector } from "reselect";
 import * as typings from "./typings";
-import search from "../search";
 
 export const FETCHED_RESULTS = "FETCHED_RESULTS";
 export const IS_LOADING = "IS_LOADING";
@@ -23,10 +22,10 @@ const initialState = {
 	attack: null
 };
 
-type searchPayload = {
-	filterType: string;
-	value: string | number;
-};
+// type searchPayload = {
+// 	filterType: string;
+// 	value: string | number;
+// };
 
 type action = {
 	type: string;
@@ -103,10 +102,14 @@ const searchCards = (
 					.match(filter.value.toLowerCase());
 			}
 
+			// Some of the filters are for optional properties that don't exist on all card objects
+			// This is needed to prevent a type error from being thrown that the property on the card is undefined.
 			if (!card[filter.filterName]) {
 				return false;
 			}
 
+			// Filters specifically for number based filters:
+			// Cost, Attack, and Health
 			if (typeof card[filter.filterName] === "number") {
 				if (filter.value === "10+") {
 					return card[filter.filterName] > 10;
@@ -114,6 +117,7 @@ const searchCards = (
 				return card[filter.filterName] === parseInt(filter.value);
 			}
 
+			// For all other filters
 			// Returns true if the card and filter contain the same value
 			return card[filter.filterName]
 				.toLowerCase()

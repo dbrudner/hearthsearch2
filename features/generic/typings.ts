@@ -20,9 +20,9 @@ export interface CardModel {
 	rarity: string;
 	set: string;
 	text?: string;
-	cost: number;
-	health: number;
-	attack: number;
+	cost: number | string;
+	health: number | string;
+	attack: number | string;
 }
 
 export interface BuildModel {

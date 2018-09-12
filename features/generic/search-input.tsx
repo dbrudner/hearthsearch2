@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import { doSearchUpdate } from "../generic/cards-model";
+import { doSearchUpdate } from "../generic/filters-model";
 import { connect } from "react-redux";
 
 interface props {

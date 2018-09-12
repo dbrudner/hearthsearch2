@@ -1,9 +1,10 @@
 import * as React from "react";
-import { fetchCards } from "../generic/fetch-cards";
+import { fetchCards } from "../generic/cards-model";
 import { connect } from "react-redux";
 import Results from "./results";
 import SearchInput from "../generic/search-input";
 import * as Filters from "../generic/filters/dropdowns";
+import SortDropdown from "../generic/sorts/dropdown-sort";
 
 export interface SearchProps {
 	fetchCards: () => void;
@@ -15,6 +16,7 @@ class Search extends React.Component<SearchProps> {
 	}
 
 	componentDidMount() {
+		console.log(this.props.fetchCards);
 		this.props.fetchCards();
 	}
 
@@ -23,15 +25,23 @@ class Search extends React.Component<SearchProps> {
 			<React.Fragment>
 				<h1>Search</h1>
 				<SearchInput />
-				<Filters.Hero />
-				<Filters.Type />
-				<Filters.Set />
-				<Filters.Rarity />
-				<Filters.Race />
-				<Filters.Ability />
-				<Filters.Cost />
-				<Filters.Health />
-				<Filters.Attack />
+				<div>
+					<h2>Filters</h2>
+					<Filters.Hero />
+					<Filters.Type />
+					<Filters.Set />
+					<Filters.Rarity />
+					<Filters.Race />
+					<Filters.Ability />
+					<Filters.Cost />
+					<Filters.Health />
+					<Filters.Attack />
+				</div>
+				<div>
+					<h2>Sort by</h2>
+					<SortDropdown />
+				</div>
+
 				<Results />
 			</React.Fragment>
 		);

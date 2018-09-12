@@ -1,8 +1,8 @@
 import * as React from "react";
 import { connect } from "react-redux";
-import { getVisibleCards, MORE_CARDS_SELECTED } from "../generic/cards-model";
+import { ActionTypes } from "../generic/cards-model";
+import { getVisibleCards } from "../generic/filters-model";
 import Cards from "../cards";
-import LoadMoreButton from "../generic/load-more-button";
 
 export interface ResultsProps {
 	visibleCards: number;
@@ -23,7 +23,7 @@ class Results extends React.Component<ResultsProps> {
 			window.innerHeight + window.scrollY >=
 			document.getElementById("__next").offsetHeight
 		) {
-			this.props.dispatch({ type: MORE_CARDS_SELECTED });
+			this.props.dispatch({ type: ActionTypes.MORE_CARDS_SELECTED });
 		}
 	};
 

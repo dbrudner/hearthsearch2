@@ -1,144 +1,61 @@
-import { createSelector } from "reselect";
 import * as typings from "./typings";
 
-export const FETCHED_RESULTS = "FETCHED_RESULTS";
-export const IS_LOADING = "IS_LOADING";
-export const MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED";
-export const UPDATED_SEARCH = "UPDATED_SEARCH";
+export enum ActionTypes {
+	FETCHED_RESULTS = "FETCHED_RESULTS",
+	IS_LOADING = "IS_LOADING",
+	MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED"
+}
 
-const initialState = {
-	allCards: [],
-	displayCards: 25,
-	loading: null,
-	name: "",
-	cardClass: "",
-	type: "",
-	race: "",
-	set: "",
-	rarity: "",
-	text: "",
-	cost: null,
-	health: null,
-	attack: null
-};
+export enum Loading {
+	Loading = "LOADING",
+	Loaded = "LOADED",
+	Waiting = "WAITING"
+}
 
-// type searchPayload = {
-// 	filterType: string;
-// 	value: string | number;
-// };
-
-type action = {
-	type: string;
+type Action = {
+	type: ActionTypes;
 	payload: any;
 };
 
-export const searchReducer = (
-	state: typings.CardModel = initialState,
-	action: action
-) => {
-	if (action.type === FETCHED_RESULTS) {
+export type State = {
+	allCards: typings.Card[];
+	loading: Loading;
+};
+
+const initialState = {
+	allCards: [],
+	loading: null
+};
+
+export const fetchCards = () => {
+	return async dispatch => {
+		dispatch({ type: ActionTypes.IS_LOADING });
+		const localCards = window.localStorage.getItem("cards");
+
+		if (localCards) {
+			const cards = JSON.parse(localCards);
+			return dispatch({
+				type: ActionTypes.FETCHED_RESULTS,
+				payload: cards
+			});
+		}
+
+		const data = await fetch(
+			"https://api.hearthstonejson.com/v1/25770/enUS/cards.collectible.json"
+		);
+
+		const cards = await data.json();
+
+		window.localStorage.setItem("cards", JSON.stringify(cards));
+
+		dispatch({ type: ActionTypes.FETCHED_RESULTS, payload: cards });
+	};
+};
+
+export const cardsReducer = (state: State = initialState, action: Action) => {
+	if (action.type === ActionTypes.FETCHED_RESULTS) {
 		return { ...state, allCards: action.payload, loading: false };
 	}
 
-	if (action.type === MORE_CARDS_SELECTED) {
-		return { ...state, displayCards: state.displayCards + 15 };
-	}
-
-	if (action.type === UPDATED_SEARCH) {
-		return {
-			...state,
-			displayCards: 50,
-			[action.payload.filterType]: action.payload.value
-		};
-	}
-
 	return state;
-};
-
-const getFilters = (state: typings.State) => {
-	return [
-		{ filterName: "search", value: state.cards.name },
-		{ filterName: "cardClass", value: state.cards.cardClass },
-		{ filterName: "type", value: state.cards.type },
-		{ filterName: "rarity", value: state.cards.rarity },
-		{ filterName: "set", value: state.cards.set },
-		{ filterName: "race", value: state.cards.race },
-		{ filterName: "text", value: state.cards.text },
-		{ filterName: "cost", value: state.cards.cost },
-		{ filterName: "health", value: state.cards.health },
-		{ filterName: "attack", value: state.cards.attack }
-	];
-};
-
-const getDisplayCards = state => state.cards.displayCards;
-const getAllCards = state => state.cards.allCards;
-
-const searchCards = (
-	cards: typings.Card[],
-	filters: {
-		filterName: string;
-		value: string | number;
-	}[]
-) => {
-	// Filter all cards
-	return cards.filter(card => {
-		// Iterates through every filter
-		// Returns a boolean:
-		// If the card passes every filter, returns true
-		// If the card doesn't pass one or more filters, return false
-		return filters.every(filter => {
-			// If there is no filter, skip to the next
-			if (!filter.value) {
-				return true;
-			}
-
-			// This filter goes first because "search" is not a prop on card
-			if (filter.filterName === "search") {
-				// Card name concat with card text to search through both
-				const searchable = card.name + " " + (card.text || "");
-
-				return searchable
-					.toLowerCase()
-					.match(filter.value.toLowerCase());
-			}
-
-			// Some of the filters are for optional properties that don't exist on all card objects
-			// This is needed to prevent a type error from being thrown that the property on the card is undefined.
-			if (!card[filter.filterName]) {
-				return false;
-			}
-
-			// Filters specifically for number based filters:
-			// Cost, Attack, and Health
-			if (typeof card[filter.filterName] === "number") {
-				if (filter.value === "10+") {
-					return card[filter.filterName] > 10;
-				}
-				return card[filter.filterName] === parseInt(filter.value);
-			}
-
-			// For all other filters
-			// Returns true if the card and filter contain the same value
-			return card[filter.filterName]
-				.toLowerCase()
-				.match(filter.value.toLowerCase());
-		});
-	});
-};
-
-export const getVisibleCards = createSelector(
-	[getFilters, getDisplayCards, getAllCards],
-	(filters, displayCards, allCards) => {
-		return searchCards(allCards, filters).slice(0, displayCards);
-	}
-);
-
-export const doSearchUpdate = (filterType: string, value: string | number) => {
-	return {
-		type: UPDATED_SEARCH,
-		payload: {
-			filterType,
-			value
-		}
-	};
 };

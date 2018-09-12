@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import { connect } from "react-redux";
 import _ from "lodash";
-import { doSearchUpdate } from "../cards-model";
+import { doSearchUpdate } from "../filters-model";
 
 const Option = Select.Option;
 
@@ -14,10 +14,9 @@ const DropDownFilter = (filterName: string, options: options) => {
 		return (
 			<Select
 				onChange={handleChange}
-				defaultValue="None"
+				defaultValue={filterName}
 				style={{ width: 120 }}
 			>
-				<Option value="">None</Option>
 				{_.map(options, option => (
 					<Option value={option.value.toLowerCase()}>
 						{option.name}

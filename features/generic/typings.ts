@@ -1,28 +1,9 @@
+import { State as CardState } from "./cards-model";
+import { State as FilterState } from "./filters-model";
+
 export interface Params {
 	hero: string;
 	format: string;
-}
-
-export enum Loading {
-	Loading = "LOADING",
-	Loaded = "LOADED",
-	Waiting = "WAITING"
-}
-
-export interface CardModel {
-	allCards: Card[];
-	displayCards: number;
-	loading: Loading;
-	name: string;
-	cardClass: string;
-	type: string;
-	race: string;
-	rarity: string;
-	set: string;
-	text?: string;
-	cost: number | string;
-	health: number | string;
-	attack: number | string;
 }
 
 export interface BuildModel {
@@ -34,8 +15,9 @@ export interface BuildModel {
 }
 
 export interface State {
-	cards: CardModel;
+	cards: CardState;
 	build: BuildModel;
+	filters: FilterState;
 }
 
 export interface Cards {

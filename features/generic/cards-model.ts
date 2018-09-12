@@ -34,6 +34,7 @@ export const fetchCards = () => {
 
 		if (localCards) {
 			const cards = JSON.parse(localCards);
+
 			return dispatch({
 				type: ActionTypes.FETCHED_RESULTS,
 				payload: cards
@@ -46,9 +47,15 @@ export const fetchCards = () => {
 
 		const cards = await data.json();
 
-		window.localStorage.setItem("cards", JSON.stringify(cards));
+		window.localStorage.setItem(
+			"cards",
+			JSON.stringify(cards.filter(card => !(card.cost === undefined)))
+		);
 
-		dispatch({ type: ActionTypes.FETCHED_RESULTS, payload: cards });
+		dispatch({
+			type: ActionTypes.FETCHED_RESULTS,
+			payload: cards.filter(card => !(card.cost === undefined))
+		});
 	};
 };
 

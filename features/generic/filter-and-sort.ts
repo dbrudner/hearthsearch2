@@ -91,10 +91,21 @@ const sortCards = (cards: typings.Card[], sortingMethod: Sort) => {
 		const aName = a[sortBy];
 		const bName = b[sortBy];
 
-		if (aName > bName) {
-			return 1;
+		if (direction === "descending") {
+			if (aName > bName) {
+				return 1;
+			}
+			return -1;
 		}
-		return -1;
+
+		if (direction === "ascending") {
+			if (bName > aName) {
+				return 1;
+			}
+			return -1;
+		}
+
+		return 0;
 	});
 };
 

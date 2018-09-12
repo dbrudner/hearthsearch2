@@ -4,9 +4,10 @@ export enum ActionTypes {
 }
 
 export type SortBy = "name" | "cost" | "health" | "attack" | null;
+export type Direction = "ascending" | "descending";
 
 export type State = {
-	direction: "ascending" | "descending";
+	direction: Direction;
 	sortBy: SortBy;
 };
 
@@ -16,7 +17,7 @@ type Action = {
 };
 
 const initialState = {
-	direction: "ascending" as "ascending",
+	direction: "descending" as "descending",
 	sortBy: null
 };
 

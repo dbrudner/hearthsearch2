@@ -23,7 +23,7 @@ export type State = {
 };
 
 const initialState = {
-	displayCards: 25,
+	displayCards: 15,
 	name: "",
 	cardClass: "",
 	type: "",
@@ -54,7 +54,7 @@ export const filtersReducer = (state: State = initialState, action: action) => {
 	if (action.type === ActionType.UPDATED_SEARCH) {
 		return {
 			...state,
-			displayCards: 50,
+			displayCards: 15,
 			[action.payload.filterType]: action.payload.value
 		};
 	}

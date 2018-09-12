@@ -1,7 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import { ActionTypes } from "../generic/cards-model";
-import { getVisibleCards } from "../generic/filters-model";
+import { getVisibleCards } from "../generic/filter-and-sort";
 import Cards from "../cards";
 
 export interface ResultsProps {

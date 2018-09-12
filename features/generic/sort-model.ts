@@ -3,10 +3,10 @@ export enum ActionTypes {
 	UPDATED_SORT_BY = "UPDATED_SORT_BY"
 }
 
-export type SortBy = "name" | "cost" | "health" | "attack";
+export type SortBy = "name" | "cost" | "health" | "attack" | null;
 
-type State = {
-	direction: "ascending" | "descending" | null;
+export type State = {
+	direction: "ascending" | "descending";
 	sortBy: SortBy;
 };
 
@@ -16,7 +16,7 @@ type Action = {
 };
 
 const initialState = {
-	direction: null,
+	direction: "ascending" as "ascending",
 	sortBy: null
 };
 

@@ -1,4 +1,4 @@
-enum ActionType {
+export enum ActionType {
 	MORE_CARDS_SELECTED = "MORE_CARDS_SELECTED",
 	UPDATED_SEARCH = "UPDATED_SEARCH"
 }

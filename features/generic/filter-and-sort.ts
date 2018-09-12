@@ -81,21 +81,21 @@ const filterCards = (
 };
 
 const sortCards = (cards: typings.Card[], sortingMethod: Sort) => {
-	console.log(sortingMethod);
-	console.log(cards);
 	const { direction, sortBy } = sortingMethod;
-	const x = cards.sort((a, b) => {
-		const aName = a.name.toLowerCase();
-		const bName = b.name.toLowerCase();
+
+	if (!sortBy) {
+		return cards;
+	}
+
+	return cards.sort((a, b) => {
+		const aName = a[sortBy];
+		const bName = b[sortBy];
 
 		if (aName > bName) {
 			return 1;
 		}
 		return -1;
 	});
-
-	console.log(x);
-	return x;
 };
 
 export const getVisibleCards = createSelector(

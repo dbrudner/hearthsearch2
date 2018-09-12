@@ -39,22 +39,14 @@ const initialState = {
 	attack: null
 };
 
-export const filtersReducer = (state: State = initialState, action: action) => {
-	console.log(action);
-	if (action.type === ActionType.MORE_CARDS_SELECTED) {
-		return { ...state, displayCards: state.displayCards + 15 };
-	}
-
-	if (action.type === ActionType.UPDATED_SEARCH) {
-		console.log("HI");
-		return {
-			...state,
-			displayCards: 50,
-			[action.payload.filterType]: action.payload.value
-		};
-	}
-
-	return state;
+export const doSearchUpdate = (filterType: string, value: string | number) => {
+	return {
+		type: ActionType.UPDATED_SEARCH,
+		payload: {
+			filterType,
+			value
+		}
+	};
 };
 
 const getFilters = (state: typings.State) => {
@@ -69,18 +61,6 @@ const getFilters = (state: typings.State) => {
 		"health",
 		"attack"
 	];
-	// return [
-	// 	{ filterName: "search", value: state.filters.name },
-	// 	{ filterName: "cardClass", value: state.filters.cardClass },
-	// 	{ filterName: "type", value: state.filters.type },
-	// 	{ filterName: "rarity", value: state.filters.rarity },
-	// 	{ filterName: "set", value: state.filters.set },
-	// 	{ filterName: "race", value: state.filters.race },
-	// 	{ filterName: "text", value: state.filters.text },
-	// 	{ filterName: "cost", value: state.filters.cost },
-	// 	{ filterName: "health", value: state.filters.health },
-	// 	{ filterName: "attack", value: state.filters.attack }
-	// ];
 	return [
 		{ filterName: "search", value: state.filters.name },
 		...filters.map(filter => ({
@@ -153,13 +133,18 @@ export const getVisibleCards = createSelector(
 	}
 );
 
-export const doSearchUpdate = (filterType: string, value: string | number) => {
-	console.log(filterType, value);
-	return {
-		type: ActionType.UPDATED_SEARCH,
-		payload: {
-			filterType,
-			value
-		}
-	};
+export const filtersReducer = (state: State = initialState, action: action) => {
+	if (action.type === ActionType.MORE_CARDS_SELECTED) {
+		return { ...state, displayCards: state.displayCards + 15 };
+	}
+
+	if (action.type === ActionType.UPDATED_SEARCH) {
+		return {
+			...state,
+			displayCards: 50,
+			[action.payload.filterType]: action.payload.value
+		};
+	}
+
+	return state;
 };

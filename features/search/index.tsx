@@ -16,7 +16,6 @@ class Search extends React.Component<SearchProps> {
 	}
 
 	componentDidMount() {
-		console.log(this.props.fetchCards);
 		this.props.fetchCards();
 	}
 

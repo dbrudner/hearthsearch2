@@ -14,7 +14,7 @@ class Index extends React.Component<IndexProps, IndexState> {
 	render() {
 		return (
 			<div>
-				<h1 className="red">Hearthsearch</h1>
+				<h1>Hearthsearch</h1>
 			</div>
 		);
 	}

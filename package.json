@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "next",
 		"build": "next build",
+		"test": "jest",
 		"start": "next start"
 	},
 	"keywords": [],
@@ -27,9 +28,16 @@
 		"reselect": "^3.0.1"
 	},
 	"devDependencies": {
+		"@types/jest": "^23.3.2",
 		"@types/next": "^6.1.4",
 		"@types/react": "^16.4.11",
 		"@types/styled-jsx": "^2.2.5",
-		"babel-plugin-import": "^1.8.0"
+		"babel-jest": "^23.6.0",
+		"babel-plugin-import": "^1.8.0",
+		"enzyme": "^3.6.0",
+		"enzyme-adapter-react-16": "^1.5.0",
+		"jest": "^23.6.0",
+		"react-addons-test-utils": "^15.6.2",
+		"react-test-renderer": "^16.5.1"
 	}
 }

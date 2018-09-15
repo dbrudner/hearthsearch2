@@ -1,9 +1,9 @@
 import * as React from "react";
 import Cards from "../cards";
-import { fetchCards } from "../generic/fetch-cards";
+import { fetchCards } from "../generic/cards-model";
 import { connect } from "react-redux";
-import { getVisibleCards } from "../generic/cards-model";
-import { doSearchUpdate } from "../generic/cards-model";
+import { getVisibleCards } from "../generic/filter-and-sort";
+import { doSearchUpdate } from "../generic/filters-model";
 import Deck from "./deck";
 import SearchInput from "../generic/search-input";
 import LoadMoreButton from "../generic/load-more-button";

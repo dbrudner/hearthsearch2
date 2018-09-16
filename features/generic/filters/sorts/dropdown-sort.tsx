@@ -1,7 +1,7 @@
 import { Select } from "antd";
 import { connect } from "react-redux";
-import { SortBy, Direction, ActionTypes } from "../sort-model";
-import { ActionType as FilterActionTypes } from "../filters-model";
+import { SortBy, Direction, ActionTypes } from "../../sort-model";
+import { ActionType as FilterActionTypes } from "../../filters-model";
 
 const Option = Select.Option;
 

@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\dave\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js test
+  C:\Program Files\nodejs\node.exe C:\Users\dave\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js watch
 
 PATH: 
   C:\Users\dave\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\local\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\usr\bin;C:\Program Files\Git\mingw64\bin;C:\Program Files\Git\usr\bin;C:\Users\dave\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Program Files\nodejs;C:\Program Files\Git\cmd;C:\Go\bin;C:\Program Files\Microsoft VS Code\bin;C:\Users\dave\Anaconda3;C:\Users\dave\Anaconda3\Library\mingw-w64\bin;C:\Users\dave\Anaconda3\Library\usr\bin;C:\Users\dave\Anaconda3\Library\bin;C:\Users\dave\Anaconda3\Scripts;C:\Users\dave\AppData\Roaming\npm;C:\Program Files\Heroku\bin;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\MongoDB\bin;C:\Program Files (x86)\Atmel\Flip 3.4.7\bin;%GOPATH%\bin;C:\Program Files\Git\usr\bin\vendor_perl;C:\Program Files\Git\usr\bin\core_perl
@@ -23,6 +23,7 @@ npm manifest:
   		"dev": "next",
   		"build": "next build",
   		"test": "jest",
+  		"watch": "jest --watch",
   		"start": "next start"
   	},
   	"keywords": [],
@@ -5669,7 +5670,7 @@ Trace:
   Error: Command failed.
   Exit code: 1
   Command: C:\Windows\system32\cmd.exe
-  Arguments: /d /s /c jest
+  Arguments: /d /s /c jest --watch
   Directory: C:\Users\dave\Desktop\hs2
   Output:
   

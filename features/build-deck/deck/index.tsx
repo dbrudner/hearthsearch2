@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import _ from "lodash";
+import CardTile from "./card-tile";
 import * as types from "../model";
 
 const Deck = ({ params, deck, dispatch }) => (
@@ -7,23 +8,9 @@ const Deck = ({ params, deck, dispatch }) => (
 		<h2>{params.hero}</h2>
 		<p>{params.format}</p>
 		<ul>
-			{_.map(deck, card => {
-				return (
-					<li key={card.dbfId}>
-						{card.name} {card.quantity}
-						<button
-							onClick={() =>
-								dispatch({
-									type: types.CARD_REMOVED,
-									payload: card.name
-								})
-							}
-						>
-							Remove
-						</button>
-					</li>
-				);
-			})}
+			{_.map(deck, card => (
+				<CardTile {...card} />
+			))}
 		</ul>
 	</div>
 );

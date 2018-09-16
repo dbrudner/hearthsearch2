@@ -1,22 +1,47 @@
 import Title from "./title";
 import Card from "./card";
+import * as typings from "../generic/typings";
+import { connect } from "react-redux";
+import * as actions from "../build-deck/model";
 
-const Cards = ({ cards }) => (
+type CardsProps = {
+	cards: typings.Card[];
+	buildDeck: boolean;
+	addToDeck: (card: typings.Card) => void;
+};
+
+const Cards: React.SFC<CardsProps> = ({ cards, buildDeck, addToDeck }) => (
 	<div
 		style={{
 			display: "grid",
-			gridTemplateColumns: "auto auto auto auto auto"
+			gridTemplateColumns: "auto auto auto auto"
 		}}
 	>
-		{cards.map(({ id }) => (
-			<div style={{ width: "calc(20vw - 10px)" }}>
+		{cards.map(card => (
+			<div style={{ width: "calc(20vw - 20px)", position: "relative" }}>
 				<img
-					src={`http://media.services.zam.com/v1/media/byName/hs/cards/enus/${id}.png`}
+					onClick={buildDeck ? () => addToDeck(card) : null}
+					style={{
+						width: "90%",
+						cursor: "pointer",
+						clip: "rect(30px, 30px, 30px, 30px)"
+					}}
+					src={`http://media.services.zam.com/v1/media/byName/hs/cards/enus/${
+						card.id
+					}.png`}
 				/>
 			</div>
-			// <Card {...card} />
 		))}
 	</div>
 );
 
-export default Cards;
+const mapDispatchToProps = dispatch => ({
+	addToDeck: card => {
+		dispatch({ type: actions.CARD_ADDED, payload: card });
+	}
+});
+
+export default connect(
+	null,
+	mapDispatchToProps
+)(Cards);

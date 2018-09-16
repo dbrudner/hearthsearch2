@@ -7,6 +7,7 @@ import { doSearchUpdate } from "../generic/filters-model";
 import Deck from "./deck";
 import SearchInput from "../generic/search-input";
 import LoadMoreButton from "../generic/load-more-button";
+import Filters from "../generic/filters";
 
 class BuildDeck extends React.Component<any, any> {
 	async componentDidMount() {
@@ -29,9 +30,10 @@ class BuildDeck extends React.Component<any, any> {
 				>
 					<Deck />
 				</div>
-				<div style={{ marginLeft: "20vw" }}>
+				<div style={{ marginLeft: "20vw", width: "70vw" }}>
 					<SearchInput />
-					<Cards cards={this.props.visibleCards} />
+					<Filters />
+					<Cards buildDeck cards={this.props.visibleCards} />
 					<LoadMoreButton />
 				</div>
 			</div>

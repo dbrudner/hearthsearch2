@@ -28,9 +28,6 @@ const Build: React.SFC<props> = props => {
 	if (format) {
 		return (
 			<div style={{ display: "flex", width: "50vw" }}>
-				<div style={{ width: "15%", height: "100vh" }}>
-					<h2>Deck</h2>
-				</div>
 				<div
 					style={{
 						display: "grid",

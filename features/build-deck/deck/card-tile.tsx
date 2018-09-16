@@ -8,20 +8,33 @@ type CardTileProps = typings.Card & {
 	removeCard: (id: string) => void;
 };
 
-const getLiStyle = id => ({
-	width: "100%",
+const getDivStyle = id => ({
+	width: "200px",
 	backgroundImage: `url(https://art.hearthstonejson.com/v1/tiles/${id}.png)`,
 	color: "white",
-	padding: "20px"
+	padding: "20px",
+	zIndex: 2
 });
+
+const overlay = {
+	width: "200px",
+	height: "100%",
+	position: "absolute" as "absolute",
+	zIndex: 1,
+	background:
+		"linear-gradient(to right, rgba(0, 0, 0, .8) 0%, rgba(55, 55, 55, 0.2) 100%)"
+};
 
 const CardTile: React.SFC<CardTileProps> = props => (
 	<li
 		onClick={() => props.removeCard(props.name)}
-		style={getLiStyle(props.id)}
 		key={props.dbfId}
+		style={{ position: "relative", listStyle: "none" }}
 	>
-		{props.name} {props.quantity}
+		<div style={overlay} />
+		<div style={getDivStyle(props.id)}>
+			{props.name} {props.quantity}
+		</div>
 	</li>
 );
 

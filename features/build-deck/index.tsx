@@ -28,13 +28,22 @@ class BuildDeck extends React.Component<any, any> {
 						backgroundColor: "white"
 					}}
 				>
-					<Deck />
-				</div>
-				<div style={{ marginLeft: "20vw", width: "70vw" }}>
 					<SearchInput />
 					<Filters />
+				</div>
+				<div
+					style={{
+						width: "20vw",
+						height: "100vh",
+						position: "fixed",
+						right: 0,
+						backgroundColor: "white"
+					}}
+				>
+					<Deck />
+				</div>
+				<div style={{ margin: "0 20vw", width: "60vw" }}>
 					<Cards buildDeck cards={this.props.visibleCards} />
-					<LoadMoreButton />
 				</div>
 			</div>
 		);

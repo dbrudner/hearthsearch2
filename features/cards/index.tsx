@@ -11,18 +11,20 @@ type CardsProps = {
 };
 
 const Cards: React.SFC<CardsProps> = ({ cards, buildDeck, addToDeck }) => (
-	<div
-		style={{
-			display: "grid",
-			gridTemplateColumns: "auto auto auto auto"
-		}}
-	>
+	<div>
 		{cards.map(card => (
-			<div style={{ width: "calc(20vw - 20px)", position: "relative" }}>
+			<div
+				style={{
+					width: "calc(20vw - 20px)",
+					position: "relative",
+					display: "inline-block",
+					margin: "auto"
+				}}
+			>
 				<img
 					onClick={buildDeck ? () => addToDeck(card) : null}
 					style={{
-						width: "90%",
+						width: "70%",
 						cursor: "pointer",
 						clip: "rect(30px, 30px, 30px, 30px)"
 					}}

@@ -13,8 +13,6 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"@zeit/next-css": "^0.2.0",
-		"@zeit/next-typescript": "^1.1.0",
 		"antd": "^3.8.2",
 		"formik": "^1.1.1",
 		"lodash": "^4.17.10",
@@ -23,13 +21,14 @@
 		"react-dom": "^16.4.2",
 		"react-redux": "^5.0.7",
 		"redux": "^4.0.0",
-		"redux-devtools-extension": "^2.13.5",
 		"redux-thunk": "^2.3.0",
 		"reselect": "^3.0.1"
 	},
 	"devDependencies": {
 		"@types/jest": "^23.3.2",
 		"@types/next": "^6.1.4",
+		"@zeit/next-css": "^0.2.0",
+		"@zeit/next-typescript": "^1.1.0",
 		"@types/react": "^16.4.11",
 		"@types/styled-jsx": "^2.2.5",
 		"babel-jest": "^23.6.0",
@@ -38,6 +37,7 @@
 		"enzyme-adapter-react-16": "^1.5.0",
 		"jest": "^23.6.0",
 		"react-addons-test-utils": "^15.6.2",
-		"react-test-renderer": "^16.5.1"
+		"react-test-renderer": "^16.5.1",
+		"redux-devtools-extension": "^2.13.5"
 	}
 }

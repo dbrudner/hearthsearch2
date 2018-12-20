@@ -9,7 +9,7 @@ const Deck = ({ params, deck, dispatch }) => (
 		<p>{params.format}</p>
 		<ul>
 			{_.map(deck, card => (
-				<CardTile {...card} />
+				<CardTile key={`cardtile-${card.dbfId}`} {...card} />
 			))}
 		</ul>
 	</div>

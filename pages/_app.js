@@ -11,7 +11,9 @@ class MyApp extends App {
 		return (
 			<Container>
 				<Provider store={reduxStore}>
-					<Component {...pageProps} />
+					<div style={{ width: "900px", margin: "auto" }}>
+						<Component {...pageProps} />
+					</div>
 				</Provider>
 			</Container>
 		);

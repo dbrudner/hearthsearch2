@@ -14,11 +14,11 @@ const DropDownFilter = (filterName: string, options: options) => {
 		return (
 			<Select
 				onChange={handleChange}
-				defaultValue={filterName}
+				defaultValue={_.startCase(filterName)}
 				style={{ width: 120 }}
 			>
 				{_.map(options, option => (
-					<Option value={option.value.toLowerCase()}>
+					<Option key={option} value={option.value.toLowerCase()}>
 						{option.name}
 					</Option>
 				))}

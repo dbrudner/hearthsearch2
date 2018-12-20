@@ -14,6 +14,7 @@ const Cards: React.SFC<CardsProps> = ({ cards, buildDeck, addToDeck }) => (
 	<div>
 		{cards.map(card => (
 			<div
+				key={card.dbfId}
 				style={{
 					width: "calc(20vw - 20px)",
 					position: "relative",

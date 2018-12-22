@@ -4,6 +4,10 @@ const next = require("next");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const { randomBytes } = require("crypto");
+const { promisify } = require("util");
 const port = parseInt(process.env.PORT, 10) || 3000;
 const dev = process.env.NODE_ENV !== "production";
 const app = next({ dev });
@@ -25,22 +29,60 @@ app.prepare().then(() => {
 	server.use(bodyParser.json());
 
 	server.post("/signup", (req, res) => {
-		db.User.find({}, (err, users) => {
-			console.log(users);
+		const { username, email } = req.body;
+		db.User.findOne({ username }, (err, user) => {
+			if (err) throw err;
+			if (user) {
+				return res.status(422).json("Username already exists.");
+			}
+
+			db.User.findOne({ email }, async (err, email) => {
+				if (err) throw err;
+				if (email) {
+					return res
+						.status(422)
+						.json("That e-mail has already been used.");
+				}
+
+				const password = await bcrypt.hash(req.body.password, 10);
+
+				await db.User.create(
+					{ username, email, password },
+					(err, user) => {
+						if (err) throw err;
+						console.log(user);
+						res.json(user);
+					}
+				);
+			});
 		});
 
 		// Check is user exists
-		db.User.create(req.body, (err, user) => {
-			if (err) throw err;
-			console.log(user);
-			res.json(user);
-		});
 		// Hash password
 
 		// Set new user
 
 		// Return cookie
 		console.log(req.body);
+	});
+
+	server.post("/login", (req, res) => {
+		const { username, password } = req.body;
+		db.User.findOne({ username }, (err, user) => {
+			if (err) throw err;
+			if (!user) {
+				return res.json("No user found");
+			}
+
+			if (!bcrypt.compare(password, user.password)) {
+				return res.status(401).json("Incorrect password");
+			}
+
+			const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+
+			res.cookie("token", token, { httpOnly: true });
+			res.json({ user });
+		});
 	});
 
 	server.get("*", (req, res) => {

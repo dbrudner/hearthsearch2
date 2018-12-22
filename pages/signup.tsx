@@ -10,7 +10,7 @@ export default () => (
 		<h2>Sign up</h2>
 		<Formik
 			initialValues={{
-				name: "",
+				username: "",
 				email: "",
 				password: ""
 			}}
@@ -29,7 +29,7 @@ export default () => (
 				<Form method="post" onSubmit={handleSubmit}>
 					<FormItem {...formItemLayout} label="Username">
 						<Input
-							name="name"
+							name="username"
 							prefix={
 								<Icon
 									type="user"
@@ -38,7 +38,7 @@ export default () => (
 									}}
 								/>
 							}
-							value={values.name}
+							value={values.username}
 							type="text"
 							onChange={handleChange}
 						/>

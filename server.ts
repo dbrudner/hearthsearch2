@@ -49,9 +49,13 @@ app.prepare().then(() => {
 				await db.User.create(
 					{ username, email, password },
 					(err, user) => {
-						if (err) throw err;
-						console.log(user);
-						res.json(user);
+						const token = jwt.sign(
+							{ userId: user.id },
+							process.env.APP_SECRET
+						);
+
+						res.cookie("token", token, { httpOnly: true });
+						res.json({ user });
 					}
 				);
 			});
@@ -83,6 +87,11 @@ app.prepare().then(() => {
 			res.cookie("token", token, { httpOnly: true });
 			res.json({ user });
 		});
+	});
+
+	server.get("/logout", (req, res) => {
+		res.clearCookie("token");
+		res.json("Signing out");
 	});
 
 	server.get("*", (req, res) => {

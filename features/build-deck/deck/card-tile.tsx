@@ -1,4 +1,4 @@
-import * as typings from "../../generic/typings";
+import * as typings from "../../common/typings";
 import { connect } from "react-redux";
 import * as types from "../model";
 // https://art.hearthstonejson.com/v1/tiles/CS2_027.png

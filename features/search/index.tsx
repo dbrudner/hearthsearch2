@@ -1,9 +1,9 @@
 import { useEffect } from "react";
-import { fetchCards } from "../generic/cards-model";
+import { fetchCards } from "../common/cards-model";
 import { connect } from "react-redux";
 import Results from "./results";
-import SearchInput from "../generic/search-input";
-import Filters from "../generic/filters";
+import SearchInput from "../common/search-input";
+import Filters from "../common/filters";
 
 export interface SearchProps {
 	fetchCards: () => void;

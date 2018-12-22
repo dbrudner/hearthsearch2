@@ -1,6 +1,6 @@
 import Title from "./title";
 import Card from "./card";
-import * as typings from "../generic/typings";
+import * as typings from "../common/typings";
 import { connect } from "react-redux";
 import * as actions from "../build-deck/model";
 

@@ -1,13 +1,13 @@
 import * as React from "react";
 import Cards from "../cards";
-import { fetchCards } from "../generic/cards-model";
+import { fetchCards } from "../common/cards-model";
 import { connect } from "react-redux";
-import { getVisibleCards } from "../generic/filter-and-sort";
-import { doSearchUpdate } from "../generic/filters-model";
+import { getVisibleCards } from "../common/filter-and-sort";
+import { doSearchUpdate } from "../common/filters-model";
 import Deck from "./deck";
-import SearchInput from "../generic/search-input";
-import LoadMoreButton from "../generic/load-more-button";
-import Filters from "../generic/filters";
+import SearchInput from "../common/search-input";
+import LoadMoreButton from "../common/load-more-button";
+import Filters from "../common/filters";
 
 class BuildDeck extends React.Component<any, any> {
 	async componentDidMount() {

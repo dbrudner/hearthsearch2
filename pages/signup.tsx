@@ -1,6 +1,9 @@
 import { Form, Input, Button, Icon } from "antd";
 import { Formik } from "formik";
-import { formItemLayout, buttonItemLayout } from "../features/common";
+import {
+	formItemLayout,
+	buttonItemLayout
+} from "../features/common/form-layout";
 import Link from "next/link";
 
 const FormItem = Form.Item;

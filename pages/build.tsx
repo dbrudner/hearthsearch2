@@ -1,8 +1,8 @@
-import { heroes as colors } from "../features/generic/colors";
+import { heroes as colors } from "../features/common/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
-import * as typings from "../features/generic/typings";
+import * as typings from "../features/common/typings";
 
 const classCard = hsClass => {
 	return {

@@ -1,5 +1,5 @@
 import { Button } from "antd";
-import * as types from "../generic/cards-model";
+import * as types from "../common/cards-model";
 import { connect } from "react-redux";
 
 interface props {

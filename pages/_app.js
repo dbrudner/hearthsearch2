@@ -4,6 +4,7 @@ import withReduxStore from "../lib/with-redux-store";
 import { Provider } from "react-redux";
 import stylesheet from "antd/dist/antd.min.css";
 import "../style.css";
+import { Navbar } from "../features/nav";
 
 class MyApp extends App {
 	render() {
@@ -11,9 +12,12 @@ class MyApp extends App {
 		return (
 			<Container>
 				<Provider store={reduxStore}>
-					<div style={{ width: "900px", margin: "auto" }}>
-						<Component {...pageProps} />
-					</div>
+					<>
+						<Navbar />
+						<div style={{ width: "900px", margin: "auto" }}>
+							<Component {...pageProps} />
+						</div>
+					</>
 				</Provider>
 			</Container>
 		);

@@ -1,18 +1,8 @@
 # Build NodeJS Express app using Azure Pipelines
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript?view=vsts
 pool:
-<<<<<<< HEAD
     vmImage: "Ubuntu 16.04"
 
-=======
-    vmImage: "ubuntu-16.04"
-strategy:
-    matrix:
-        node_8_x:
-            node_version: 8.x
-        node_9_x:
-            node_version: 9.x
->>>>>>> 76a9be5d7a8a1d27b74301e751245e354f591afb
 steps:
     - task: NodeTool@0
       inputs:
@@ -24,10 +14,10 @@ steps:
           command: install
 
     - task: Npm@1
-      displayName: "npm build"
+      displayName: "npm run build"
       inputs:
           command: custom
-          customCommand: "runb uild"
+          customCommand: "run build"
 
     - task: ArchiveFiles@2
       inputs:

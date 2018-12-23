@@ -37,7 +37,7 @@ app.prepare().then(() => {
 		next();
 	});
 
-	server.post("/signup", (req, res) => {
+	server.post("/api/signup", (req, res) => {
 		const { username, email } = req.body;
 		db.User.findOne({ username }, (err, user) => {
 			if (err) throw err;
@@ -72,7 +72,7 @@ app.prepare().then(() => {
 	});
 
 	// Logs a user in and issues token
-	server.post("/login", (req, res) => {
+	server.post("/api/login", (req, res) => {
 		const { username, password } = req.body;
 		db.User.findOne({ username }, (err, user) => {
 			if (err) throw err;
@@ -92,14 +92,14 @@ app.prepare().then(() => {
 	});
 
 	// Checks if a user already has a valid token
-	server.get("/fetch-user", (req, res) => {
+	server.get("/api/fetch-user", (req, res) => {
 		db.User.findOne({ _id: req._id }, (err, user) => {
 			if (err) throw err;
 			res.json(user);
 		});
 	});
 
-	server.get("/logout", (req, res) => {
+	server.get("/api/logout", (req, res) => {
 		res.clearCookie("token");
 		res.json({ message: "Signed out", signedOut: true });
 	});

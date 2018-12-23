@@ -20,7 +20,7 @@ const CheckUserComponent = ({
 		useEffect(() => {
 			(async () => {
 				try {
-					const res = await fetch("/fetch-user");
+					const res = await fetch("./api/fetch-user");
 					const user = await res.json();
 					console.log(user);
 					if (user) {

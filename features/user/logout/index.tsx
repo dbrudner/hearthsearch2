@@ -3,7 +3,7 @@ import { selectUser, logUserOut } from "../user-model";
 import { connect } from "react-redux";
 
 const logout = async logUserOut => {
-	const res = await fetch("/logout");
+	const res = await fetch("./api/logout");
 	const data = await res.json();
 	console.log(data);
 

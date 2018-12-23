@@ -10,25 +10,23 @@ export interface SearchProps {
 }
 
 const Search = props => {
-	// useEffect(() => {
-	// 	props.fetchCards();
-	// });
+	useEffect(() => {
+		props.fetchCards();
+	});
 
 	return (
 		<>
 			<h1>Hey</h1>
 			<SearchInput />
-			<Filters />
-			{/* <Results /> */}
+			{/* <Filters /> */}
+			<Results />
 		</>
 	);
 };
 
-export default Search;
-
-// export default connect(
-// 	null,
-// 	dispatch => ({
-// 		fetchCards: () => dispatch(fetchCards())
-// 	})
-// )(Search);
+export default connect(
+	null,
+	dispatch => ({
+		fetchCards: () => dispatch(fetchCards())
+	})
+)(Search);

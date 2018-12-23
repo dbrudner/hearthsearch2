@@ -5,6 +5,8 @@
 	"main": "server.ts",
 	"scripts": {
 		"dev": "nodemon server.ts",
+		"postinstall": "next build",
+		"prestart": "next build",
 		"build": "next build",
 		"test": "jest",
 		"watch": "jest --watch",

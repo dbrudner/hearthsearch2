@@ -37,7 +37,6 @@ class Results extends React.Component<ResultsProps> {
 }
 
 const mapStateToProps = state => {
-	console.log(getVisibleCards(state));
 	return {
 		visibleCards: getVisibleCards(state)
 	};

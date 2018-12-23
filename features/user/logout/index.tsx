@@ -1,24 +1,31 @@
+import Router from "next/router";
+import { selectUser, logUserOut } from "../user-model";
 import { connect } from "react-redux";
-import { Button } from "antd";
-import { LOGOUT } from "./middleware";
 
-export * from "./middleware";
+const logout = async logUserOut => {
+	const res = await fetch("/logout");
+	const data = await res.json();
+	console.log(data);
 
-export const logout = () => ({
-	type: LOGOUT
-});
+	if (data.signedOut) {
+		logUserOut();
+	}
 
-const Logout = ({ logout }) => {
-	return (
-		<Button type="danger" onClick={logout}>
-			Logout
-		</Button>
-	);
+	if (res.ok) {
+		Router.push("/", {
+			query: {
+				logout: "true"
+			}
+		});
+	}
 };
 
-export default connect(
+const LogoutComponent = ({ logUserOut }) => {
+	console.log(logUserOut);
+	return <a onClick={() => logout(logUserOut)}>Logout</a>;
+};
+
+export const Logout = connect(
 	null,
-	dispatch => ({
-		logout: () => dispatch(logout())
-	})
-)(Logout);
+	{ logUserOut }
+)(LogoutComponent);

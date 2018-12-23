@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import stylesheet from "antd/dist/antd.min.css";
 import "../style.css";
 import { Navbar } from "../features/nav";
+import { CheckUser } from "../features/user";
 
 class MyApp extends App {
 	render() {
@@ -12,12 +13,14 @@ class MyApp extends App {
 		return (
 			<Container>
 				<Provider store={reduxStore}>
-					<>
-						<Navbar />
-						<div style={{ width: "900px", margin: "auto" }}>
-							<Component {...pageProps} />
-						</div>
-					</>
+					<CheckUser>
+						<>
+							<Navbar />
+							<div style={{ width: "900px", margin: "auto" }}>
+								<Component {...pageProps} />
+							</div>
+						</>
+					</CheckUser>
 				</Provider>
 			</Container>
 		);

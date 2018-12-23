@@ -1,19 +1,20 @@
 import { useState } from "react";
 import { Form, Input, Button, Icon, Alert } from "antd";
 import { Formik } from "formik";
-import { formItemLayout, buttonItemLayout } from "../features/common";
+import { formItemLayout, buttonItemLayout, Warning } from "../features/common";
 import Link from "next/link";
 import Router from "next/router";
+import { connect } from "react-redux";
+import { userFetched } from "../features/user/index";
 
 const FormItem = Form.Item;
 
-export default () => {
+const Login = ({ userFetched }) => {
 	const [error, setError] = useState(null);
 
 	return (
 		<div>
 			<h2>Login</h2>
-			{error && <Alert type="warning" message={error} />}
 			<Formik
 				initialValues={{
 					username: "",
@@ -34,6 +35,9 @@ export default () => {
 						});
 
 						if (res.ok) {
+							const { user } = await res.json();
+							console.log(user);
+							userFetched(user);
 							await Router.push("/");
 						} else {
 							window.scrollTo(0, 0);
@@ -78,6 +82,11 @@ export default () => {
 								onChange={handleChange}
 							/>
 						</FormItem>
+						{error && (
+							<FormItem {...buttonItemLayout}>
+								<Warning message={error} />
+							</FormItem>
+						)}
 						<FormItem {...buttonItemLayout}>
 							<Button type="primary" htmlType="submit">
 								Login
@@ -92,3 +101,8 @@ export default () => {
 		</div>
 	);
 };
+
+export default connect(
+	null,
+	{ userFetched }
+)(Login);

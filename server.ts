@@ -14,8 +14,6 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 const db = require("./app/models");
 
-console.log(process.env.ATLAS_URI);
-
 mongoose.connect(
 	process.env.ATLAS_URI,
 	{ useNewUrlParser: true }
@@ -27,6 +25,17 @@ app.prepare().then(() => {
 	server.use(cookieParser());
 	server.use(bodyParser.urlencoded({ extended: true }));
 	server.use(bodyParser.json());
+
+	server.use((req, res, next) => {
+		const { token } = req.cookies;
+
+		if (token) {
+			const { _id } = jwt.verify(token, process.env.APP_SECRET);
+			req._id = _id;
+		}
+
+		next();
+	});
 
 	server.post("/signup", (req, res) => {
 		const { username, email } = req.body;
@@ -50,7 +59,7 @@ app.prepare().then(() => {
 					{ username, email, password },
 					(err, user) => {
 						const token = jwt.sign(
-							{ userId: user.id },
+							{ _id: user.id },
 							process.env.APP_SECRET
 						);
 
@@ -60,38 +69,39 @@ app.prepare().then(() => {
 				);
 			});
 		});
-
-		// Check is user exists
-		// Hash password
-
-		// Set new user
-
-		// Return cookie
-		console.log(req.body);
 	});
 
+	// Logs a user in and issues token
 	server.post("/login", (req, res) => {
 		const { username, password } = req.body;
 		db.User.findOne({ username }, (err, user) => {
 			if (err) throw err;
 			if (!user) {
-				return res.json("No user found");
+				return res.status(422).json("No user found");
 			}
 
 			if (!bcrypt.compare(password, user.password)) {
 				return res.status(401).json("Incorrect password");
 			}
 
-			const token = jwt.sign({ userId: user.id }, process.env.APP_SECRET);
+			const token = jwt.sign({ _id: user.id }, process.env.APP_SECRET);
 
 			res.cookie("token", token, { httpOnly: true });
 			res.json({ user });
 		});
 	});
 
+	// Checks if a user already has a valid token
+	server.get("/fetch-user", (req, res) => {
+		db.User.findOne({ _id: req._id }, (err, user) => {
+			if (err) throw err;
+			res.json(user);
+		});
+	});
+
 	server.get("/logout", (req, res) => {
 		res.clearCookie("token");
-		res.json("Signing out");
+		res.json({ message: "Signed out", signedOut: true });
 	});
 
 	server.get("*", (req, res) => {

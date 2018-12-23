@@ -12,7 +12,6 @@ const initialState = {
 };
 
 export const buildDeckReducer = (state = initialState, action) => {
-	console.log(action);
 	if (action.type === CARD_ADDED) {
 		const quantity = _.keys(state.deck).includes(action.payload.name)
 			? 2

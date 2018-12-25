@@ -28,5 +28,5 @@ steps:
     - task: AzureRmWebAppDeployment@3
       inputs:
           azureSubscription: "hearthsearch2connection"
-          webAppName: "hearthsearch"
+          webAppName: "hearthsearch2"
           Package: $(System.ArtifactsDirectory)/**/*.zip

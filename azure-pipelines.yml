@@ -25,3 +25,8 @@ steps:
           includeRootFolder: false
 
     - task: PublishBuildArtifacts@1
+    - task: AzureRmWebAppDeployment@3
+      inputs:
+          azureSubscription: "<Azure service connection>"
+          WebAppName: "<Name of web app>"
+          Package: $(System.ArtifactsDirectory)/**/*.zip

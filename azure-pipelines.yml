@@ -27,6 +27,5 @@ steps:
     - task: PublishBuildArtifacts@1
     - task: AzureRmWebAppDeployment@3
       inputs:
-          azureSubscription: ""
           webAppName: "hearthsearch"
           Package: $(System.ArtifactsDirectory)/**/*.zip

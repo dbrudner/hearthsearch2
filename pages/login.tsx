@@ -36,7 +36,6 @@ const Login = ({ userFetched }) => {
 
 						if (res.ok) {
 							const { user } = await res.json();
-							console.log(user);
 							userFetched(user);
 							await Router.push("/");
 						} else {

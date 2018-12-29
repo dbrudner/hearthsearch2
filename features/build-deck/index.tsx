@@ -25,11 +25,16 @@ class BuildDeck extends React.Component<any, any> {
 						height: "100vh",
 						position: "fixed",
 						left: 0,
-						backgroundColor: "white"
+						padding: "15px 15px 150px 15px",
+						overflowY: "scroll",
+						backgroundColor: "#e2ebf4"
 					}}
 				>
-					<SearchInput />
-					<Filters />
+					<h2>Search</h2>
+					<SearchInput buildDeck />
+					<div style={{ marginTop: "15px" }}>
+						<Filters buildDeck />
+					</div>
 				</div>
 				<div
 					style={{

@@ -15,7 +15,7 @@ const handle = app.getRequestHandler();
 const db = require("./app/models");
 
 mongoose.connect(
-	"mongodb+srv://db:4gekzi2q@hearthsearch-etf9e.mongodb.net/hearthsearch?retryWrites=true",
+	process.env.ATLAS_URI,
 	{ useNewUrlParser: true }
 );
 
@@ -30,7 +30,7 @@ app.prepare().then(() => {
 		const { token } = req.cookies;
 
 		if (token) {
-			const { _id } = jwt.verify(token, process.env."app-secret-lol");
+			const { _id } = jwt.verify(token, process.env.APP_SECRET);
 			req._id = _id;
 		}
 
@@ -60,7 +60,7 @@ app.prepare().then(() => {
 					(err, user) => {
 						const token = jwt.sign(
 							{ _id: user.id },
-							process.env."app-secret-lol"
+							process.env.APP_SECRET
 						);
 
 						res.cookie("token", token, { httpOnly: true });
@@ -84,7 +84,7 @@ app.prepare().then(() => {
 				return res.status(401).json("Incorrect password");
 			}
 
-			const token = jwt.sign({ _id: user.id }, process.env."app-secret-lol");
+			const token = jwt.sign({ _id: user.id }, process.env.APP_SECRET);
 
 			res.cookie("token", token, { httpOnly: true });
 			res.json({ user });

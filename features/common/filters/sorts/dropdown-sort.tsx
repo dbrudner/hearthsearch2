@@ -10,7 +10,10 @@ const DropDownSort = props => (
 		<Select
 			onChange={value => props.updateSortBy(value)}
 			defaultValue={"Sort By"}
-			style={{ width: 120 }}
+			style={{
+				width: props.buildDeck ? "100%" : 120,
+				marginBottom: "15px"
+			}}
 		>
 			<Option value={null}>None</Option>
 			<Option value={"name"}>Name</Option>
@@ -21,7 +24,10 @@ const DropDownSort = props => (
 		<Select
 			onChange={value => props.updateSortDirection(value)}
 			defaultValue={"Descending"}
-			style={{ width: 120 }}
+			style={{
+				width: props.buildDeck ? "100%" : 120,
+				marginBottom: "15px"
+			}}
 		>
 			<Option value={"descending"}>Descending</Option>
 			<Option value={"ascending"}>Ascending</Option>

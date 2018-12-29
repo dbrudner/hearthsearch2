@@ -7,15 +7,23 @@ const Option = Select.Option;
 
 type options = { name: string; value: string }[];
 
+type Props = {
+	buildDeck?: boolean;
+	search: (filterName: string, value: any) => void;
+};
+
 const DropDownFilter = (filterName: string, options: options) => {
-	const Component = props => {
+	const Component: React.SFC<Props> = props => {
 		const handleChange = value => props.search(filterName, value);
 
 		return (
 			<Select
 				onChange={handleChange}
 				defaultValue={_.startCase(filterName)}
-				style={{ width: 120 }}
+				style={{
+					width: props.buildDeck ? "100%" : 120,
+					marginBottom: "15px"
+				}}
 			>
 				{_.map(options, option => (
 					<Option key={option} value={option.value.toLowerCase()}>

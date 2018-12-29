@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 const logout = async logUserOut => {
 	const res = await fetch("./api/logout");
 	const data = await res.json();
-	console.log(data);
 
 	if (data.signedOut) {
 		logUserOut();
@@ -21,7 +20,6 @@ const logout = async logUserOut => {
 };
 
 const LogoutComponent = ({ logUserOut }) => {
-	console.log(logUserOut);
 	return <a onClick={() => logout(logUserOut)}>Logout</a>;
 };
 

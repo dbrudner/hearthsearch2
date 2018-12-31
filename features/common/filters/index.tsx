@@ -18,7 +18,7 @@ export default props => (
 			<Filters.Attack {...props} />
 		</div>
 		<div>
-			<h2>Sort by</h2>
+			<h2>Sort By</h2>
 			<SortDropdown {...props} />
 		</div>
 	</>

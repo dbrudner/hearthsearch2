@@ -33,7 +33,7 @@ const classCard = hsClass => {
 const Build = (props: any) => {
 	const { format, hero } = props.query;
 
-	if (hero) {
+	if (Object.values(CardClass).includes(hero)) {
 		return <BuildDeck {...props} />;
 	}
 

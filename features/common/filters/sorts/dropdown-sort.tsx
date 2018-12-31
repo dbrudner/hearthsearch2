@@ -9,7 +9,7 @@ const DropDownSort = props => (
 	<>
 		<Select
 			onChange={value => props.updateSortBy(value)}
-			defaultValue={"Sort By"}
+			defaultValue="Sort by"
 			style={{
 				width: props.buildDeck ? "100%" : 120,
 				marginBottom: "15px"

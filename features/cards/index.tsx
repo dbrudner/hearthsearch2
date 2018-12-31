@@ -11,23 +11,16 @@ type CardsProps = {
 };
 
 const Cards: React.SFC<CardsProps> = ({ cards, buildDeck, addToDeck }) => (
-	<div>
+	<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
 		{cards.map(card => (
-			<div
-				key={card.dbfId}
-				style={{
-					width: "calc(20vw - 20px)",
-					position: "relative",
-					display: "inline-block",
-					margin: "auto"
-				}}
-			>
+			<div key={card.dbfId}>
 				<img
 					onClick={buildDeck ? () => addToDeck(card) : null}
 					style={{
 						width: "70%",
 						cursor: "pointer",
-						clip: "rect(30px, 30px, 30px, 30px)"
+						margin: "auto",
+						display: "block"
 					}}
 					src={`http://media.services.zam.com/v1/media/byName/hs/cards/enus/${
 						card.id

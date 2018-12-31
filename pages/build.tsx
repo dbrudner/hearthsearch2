@@ -3,6 +3,8 @@ import { heroes as colors } from "../features/common/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
+import { CardClass } from "../features/common/typings";
+import capitalize from "lodash/capitalize";
 
 const { Meta } = Card;
 
@@ -41,32 +43,34 @@ const Build = (props: any) => {
 				<div
 					style={{
 						display: "grid",
-						gridTemplateColumns:
-							"repeat(auto-fill, minmax(250px, 1fr))",
+						gridTemplateColumns: "repeat(auto-fill, 250px)",
 						gridGap: "30px"
 					}}
 				>
-					{CLASSES.map((hsClass: string) => (
-						<div>
-							<Link
-								href={`/build?format=${format}&hero=${hsClass}`}
-							>
-								<div style={classCard(hsClass)}>
-									<h2
-										style={{
-											color: "white",
-											textAlign: "center"
-										}}
-									>
-										{hsClass}
-									</h2>
-									<img
-										src={`/static/SVG/Class_${hsClass}.svg`}
-									/>
-								</div>
-							</Link>
-						</div>
-					))}
+					{Object.values(CardClass)
+						.filter(hsClass => hsClass !== CardClass.Neutral)
+						.map(hsClass => (
+							<div>
+								<Link
+									href={`/build?format=${format}&hero=${hsClass}`}
+								>
+									<div style={classCard(hsClass)}>
+										<h2
+											style={{
+												color: "white",
+												textAlign: "center"
+											}}
+										>
+											{capitalize(hsClass)}
+										</h2>
+										<img
+											style={{ width: "100%" }}
+											src={`/static/SVG/Class_${hsClass}.svg`}
+										/>
+									</div>
+								</Link>
+							</div>
+						))}
 				</div>
 			</div>
 		);

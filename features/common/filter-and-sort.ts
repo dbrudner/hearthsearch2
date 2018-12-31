@@ -12,7 +12,8 @@ const getFilters = (state: typings.State) => {
 		"text",
 		"cost",
 		"health",
-		"attack"
+		"attack",
+		"buildMode"
 	];
 	return [
 		{ filterName: "search", value: state.filters.name },
@@ -35,6 +36,11 @@ const filterCards = (
 	}[]
 ) => {
 	// Filter all cards
+
+	const buildMode = filters.filter(
+		({ filterName, value }) => filterName === "buildMode" && value
+	);
+
 	return cards.filter(card => {
 		// Iterates through every filter
 		// Returns a boolean:
@@ -60,6 +66,12 @@ const filterCards = (
 			// This is needed to prevent a type error from being thrown that the property on the card is undefined.
 			if (!card[filter.filterName]) {
 				return false;
+			}
+
+			if (buildMode && filter.filterName === "cardClass") {
+				return (
+					card.cardClass === typings.CardClass.Neutral || filter.value
+				);
 			}
 
 			// Filters specifically for number based filters:

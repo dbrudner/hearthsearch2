@@ -20,6 +20,7 @@ export type State = {
 	cost: number | "10+";
 	health: number | "10+";
 	attack: number | "10+";
+	buildMode: boolean;
 };
 
 const initialState = {
@@ -33,7 +34,8 @@ const initialState = {
 	text: "",
 	cost: null,
 	health: null,
-	attack: null
+	attack: null,
+	buildMode: false
 };
 
 export const doSearchUpdate = (filterType: string, value: string | number) => {

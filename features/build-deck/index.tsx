@@ -18,15 +18,12 @@ class BuildDeck extends React.Component<any, any> {
 
 	render() {
 		return (
-			<div>
+			<div
+				style={{ display: "grid", gridTemplateColumns: "1fr 4fr 1fr" }}
+			>
 				<div
 					style={{
-						width: "20vw",
-						height: "100vh",
-						position: "fixed",
-						left: 0,
 						padding: "15px 15px 150px 15px",
-						overflowY: "scroll",
 						backgroundColor: "#e2ebf4"
 					}}
 				>
@@ -36,20 +33,11 @@ class BuildDeck extends React.Component<any, any> {
 						<Filters buildDeck />
 					</div>
 				</div>
-				<div
-					style={{
-						width: "20vw",
-						height: "100vh",
-						position: "fixed",
-						right: 0,
-						backgroundColor: "white"
-					}}
-				>
-					<Deck />
-				</div>
-				<div style={{ margin: "0 20vw", width: "60vw" }}>
+
+				<div>
 					<Cards buildDeck cards={this.props.visibleCards} />
 				</div>
+				<Deck />
 			</div>
 		);
 	}

@@ -1,7 +1,6 @@
 import * as types from "./cards-model";
 import { connect } from "react-redux";
-import { useEffect, useRef } from "react";
-import ReactDOM from "react-dom";
+import { useEffect } from "react";
 import debounce from "lodash/debounce";
 
 interface props {

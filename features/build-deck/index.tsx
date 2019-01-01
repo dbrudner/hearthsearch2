@@ -52,6 +52,7 @@ const mapDispatchToProps = dispatch => {
 	return {
 		fetchCards: () => dispatch(fetchCards()),
 		setDeckParams({ format, cardClass }) {
+			// Have to figure this out. Right now, this is not the best way to do this.
 			dispatch(doSearchUpdate("cardClass", cardClass));
 			dispatch(doSearchUpdate("buildMode", true));
 			// doSearchUpdate("format", format);

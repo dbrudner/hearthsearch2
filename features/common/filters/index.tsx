@@ -1,19 +1,23 @@
-import * as Filters from "./dropdowns";
+import * as Filter from "./dropdowns";
 import SortDropdown from "./sorts/dropdown-sort";
 
-export default props => (
+type Props = {
+	buildDeck?: boolean;
+};
+
+const Filters: React.SFC<Props> = props => (
 	<>
 		<div>
 			<h2>Filters</h2>
-			<Filters.Hero {...props} />
-			<Filters.Type {...props} />
-			<Filters.Set {...props} />
-			<Filters.Rarity {...props} />
-			<Filters.Race {...props} />
-			<Filters.Ability {...props} />
-			<Filters.Cost {...props} />
-			<Filters.Health {...props} />
-			<Filters.Attack {...props} />
+			{!props.buildDeck && <Filter.Hero {...props} />}
+			<Filter.Type {...props} />
+			<Filter.Set {...props} />
+			<Filter.Rarity {...props} />
+			<Filter.Race {...props} />
+			<Filter.Ability {...props} />
+			<Filter.Cost {...props} />
+			<Filter.Health {...props} />
+			<Filter.Attack {...props} />
 		</div>
 		<div>
 			<h2>Sort By</h2>
@@ -21,3 +25,5 @@ export default props => (
 		</div>
 	</>
 );
+
+export default Filters;

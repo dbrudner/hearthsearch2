@@ -31,7 +31,7 @@ const LoadMore: React.SFC<props> = ({ dispatch, children }) => {
 		};
 	});
 
-	return <div onScroll={() => console.log("HEY")}>{children}</div>;
+	return <div>{children}</div>;
 };
 
 export default connect()(LoadMore);

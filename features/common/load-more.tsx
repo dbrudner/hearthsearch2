@@ -12,20 +12,7 @@ interface props {
 	) => void;
 }
 
-const handleScroll = e => {
-	console.log(e.target.scrollingElement.scrollHeight);
-	console.log(e.target.scrollingElement.offsetHeight);
-	console.log(e);
-	// const bottom =
-	// 	e.target.scrollHeight - e.target.scrollTop === e.target.clientHeight;
-	// console.log(bottom);
-	// if (bottom) {
-	// 	dispatch({ type: types.ActionTypes.MORE_CARDS_SELECTED });
-	// }
-};
-
 const onScroll = dispatch => {
-	console.log("HI");
 	if (
 		window.innerHeight + window.scrollY >=
 		document.getElementById("__next").offsetHeight
@@ -34,7 +21,7 @@ const onScroll = dispatch => {
 	}
 };
 
-const LoadMoreButton: React.SFC<props> = ({ dispatch, children }) => {
+const LoadMore: React.SFC<props> = ({ dispatch, children }) => {
 	const handleEvent = debounce(() => onScroll(dispatch), 300);
 
 	useEffect(() => {
@@ -44,12 +31,7 @@ const LoadMoreButton: React.SFC<props> = ({ dispatch, children }) => {
 		};
 	});
 
-	return (
-		<div onScroll={() => console.log("HEY")}>
-			<h1>load more</h1>
-			{children}
-		</div>
-	);
+	return <div onScroll={() => console.log("HEY")}>{children}</div>;
 };
 
-export default connect()(LoadMoreButton);
+export default connect()(LoadMore);

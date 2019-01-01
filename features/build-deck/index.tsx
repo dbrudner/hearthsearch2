@@ -19,7 +19,7 @@ class BuildDeck extends React.Component<any, any> {
 	render() {
 		return (
 			<div
-				style={{ display: "grid", gridTemplateColumns: "1fr 4fr 1fr" }}
+				style={{ display: "grid", gridTemplateColumns: "1fr 3fr 1fr" }}
 			>
 				<div
 					style={{

@@ -17,10 +17,10 @@ const sortDeckKeys = deck =>
 const sortDeck = (deck, keys) => keys.map(key => deck[key]);
 
 const Deck = ({ params, deck }) => (
-	<div style={{ padding: "20px" }}>
+	<div>
 		<h2>{params.hero}</h2>
 		<p>{params.format}</p>
-		<ul>
+		<ul style={{ margin: 0, padding: 0 }}>
 			{_.map(sortDeck(deck, sortDeckKeys(deck)), card => (
 				<CardTile key={`cardtile-${card.dbfId}`} {...card} />
 			))}

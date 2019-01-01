@@ -30,6 +30,7 @@ const CardTile: React.SFC<CardTileProps> = props => (
 		onClick={() => props.removeCard(props.name)}
 		key={props.dbfId}
 		style={{
+			width: "200px",
 			position: "relative",
 			listStyle: "none",
 			boxShadow: "4px 5px 12px -2px rgba(20,20,20,0.85)",

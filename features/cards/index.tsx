@@ -11,7 +11,12 @@ type CardsProps = {
 };
 
 const Cards: React.SFC<CardsProps> = ({ cards, buildDeck, addToDeck }) => (
-	<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr" }}>
+	<div
+		style={{
+			display: "grid",
+			gridTemplateColumns: "repeat(auto-fill, 250px)"
+		}}
+	>
 		{cards.map(card => (
 			<div key={card.dbfId}>
 				<img

@@ -5,15 +5,13 @@ import ChooseFormat from "../features/build-deck/choose-format";
 import { CardClass } from "../features/common/typings";
 import capitalize from "lodash/capitalize";
 
-const classCard = hsClass => {
-	return {
-		borderRadius: "5px",
-		margin: "5px",
-		padding: "10px 30px",
-		cursor: "pointer",
-		backgroundColor: colors[hsClass.toLowerCase()]
-	};
-};
+const classCard = hsClass => ({
+	borderRadius: "5px",
+	margin: "5px",
+	padding: "10px 30px",
+	cursor: "pointer",
+	backgroundColor: colors[hsClass.toLowerCase()]
+});
 
 const Build = (props: any) => {
 	const { format, hero } = props.query;

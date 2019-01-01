@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { ActionTypes } from "../common/cards-model";
 import { getVisibleCards } from "../common/filter-and-sort";
 import Cards from "../cards";
+import LoadMore from "../common/load-more";
 
 export interface ResultsProps {
 	visibleCards: number;
@@ -10,28 +11,11 @@ export interface ResultsProps {
 }
 
 class Results extends React.Component<ResultsProps> {
-	componentDidMount() {
-		window.addEventListener("scroll", this.onScroll, false);
-	}
-
-	componentWillUnmount() {
-		window.removeEventListener("scroll", this.onScroll, false);
-	}
-
-	onScroll = () => {
-		if (
-			window.innerHeight + window.scrollY >=
-			document.getElementById("__next").offsetHeight
-		) {
-			this.props.dispatch({ type: ActionTypes.MORE_CARDS_SELECTED });
-		}
-	};
-
 	render() {
 		return (
-			<div>
+			<LoadMore>
 				<Cards cards={this.props.visibleCards} />
-			</div>
+			</LoadMore>
 		);
 	}
 }

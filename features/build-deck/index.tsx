@@ -6,7 +6,7 @@ import { getVisibleCards } from "../common/filter-and-sort";
 import { doSearchUpdate } from "../common/filters-model";
 import Deck from "./deck";
 import SearchInput from "../common/search-input";
-import LoadMoreButton from "../common/load-more-button";
+import LoadMoreButton from "../common/load-more";
 import Filters from "../common/filters";
 
 class BuildDeck extends React.Component<any, any> {

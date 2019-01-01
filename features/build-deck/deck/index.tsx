@@ -3,12 +3,25 @@ import _ from "lodash";
 import CardTile from "./card-tile";
 import * as types from "../model";
 
-const Deck = ({ params, deck, dispatch }) => (
-	<div>
+const sortDeckKeys = deck =>
+	Object.keys(deck).sort((a, b) => {
+		if (a > b) {
+			return 1;
+		}
+		if (a < b) {
+			return -1;
+		}
+		return 0;
+	});
+
+const sortDeck = (deck, keys) => keys.map(key => deck[key]);
+
+const Deck = ({ params, deck }) => (
+	<div style={{ padding: "20px" }}>
 		<h2>{params.hero}</h2>
 		<p>{params.format}</p>
 		<ul>
-			{_.map(deck, card => (
+			{_.map(sortDeck(deck, sortDeckKeys(deck)), card => (
 				<CardTile key={`cardtile-${card.dbfId}`} {...card} />
 			))}
 		</ul>

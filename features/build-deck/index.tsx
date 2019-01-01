@@ -34,9 +34,7 @@ class BuildDeck extends React.Component<any, any> {
 					</div>
 				</div>
 
-				<div>
-					<Cards buildDeck cards={this.props.visibleCards} />
-				</div>
+				<Cards buildDeck cards={this.props.visibleCards} />
 				<Deck />
 			</div>
 		);

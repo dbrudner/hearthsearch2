@@ -1,24 +1,9 @@
-import { Card } from "antd";
 import { heroes as colors } from "../features/common/colors";
 import Link from "next/link";
 import BuildDeck from "../features/build-deck";
 import ChooseFormat from "../features/build-deck/choose-format";
 import { CardClass } from "../features/common/typings";
 import capitalize from "lodash/capitalize";
-
-const { Meta } = Card;
-
-const CLASSES = [
-	"Warrior",
-	"Shaman",
-	"Rogue",
-	"Paladin",
-	"Hunter",
-	"Druid",
-	"Warlock",
-	"Mage",
-	"Priest"
-];
 
 const classCard = hsClass => {
 	return {

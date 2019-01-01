@@ -12,8 +12,7 @@ const getFilters = (state: typings.State) => {
 		"text",
 		"cost",
 		"health",
-		"attack",
-		"buildMode"
+		"attack"
 	];
 	return [
 		{ filterName: "search", value: state.filters.name },
@@ -27,19 +26,17 @@ const getFilters = (state: typings.State) => {
 const getDisplayCards = state => state.filters.displayCards;
 const getAllCards = state => state.cards.allCards;
 const getSortingMethod = state => ({ ...state.sort });
+const getBuildMode = state => state.filters.buildMode;
 
 const filterCards = (
 	cards: typings.Card[],
 	filters: {
 		filterName: string;
 		value: any;
-	}[]
+	}[],
+	buildMode: boolean
 ) => {
 	// Filter all cards
-
-	const buildMode = filters.filter(
-		({ filterName, value }) => filterName === "buildMode" && value
-	);
 
 	return cards.filter(card => {
 		// Iterates through every filter
@@ -70,7 +67,8 @@ const filterCards = (
 
 			if (buildMode && filter.filterName === "cardClass") {
 				return (
-					card.cardClass === typings.CardClass.Neutral || filter.value
+					card.cardClass === "NEUTRAL" ||
+					card.cardClass === filter.value
 				);
 			}
 
@@ -122,10 +120,10 @@ const sortCards = (cards: typings.Card[], sortingMethod: Sort) => {
 };
 
 export const getVisibleCards = createSelector(
-	[getSortingMethod, getFilters, getDisplayCards, getAllCards],
-	(sortingMethod, filters, displayCards, allCards) => {
+	[getSortingMethod, getFilters, getDisplayCards, getAllCards, getBuildMode],
+	(sortingMethod, filters, displayCards, allCards, buildMode) => {
 		// Cards that passed through filter
-		const residualCards = filterCards(allCards, filters);
+		const residualCards = filterCards(allCards, filters, buildMode);
 		return sortCards(residualCards, sortingMethod).slice(0, displayCards);
 	}
 );

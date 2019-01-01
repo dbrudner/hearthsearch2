@@ -1,8 +1,6 @@
 import * as Filters from "./dropdowns";
 import SortDropdown from "./sorts/dropdown-sort";
 
-console.log(Filters);
-
 export default props => (
 	<>
 		<div>

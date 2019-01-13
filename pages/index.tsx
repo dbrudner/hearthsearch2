@@ -1,39 +1,10 @@
-import * as React from "react";
+import Search from "../features/search";
 import "../style.css";
-import { connect } from "react-redux";
-import { Alert } from "antd";
-import Link from "next/link";
 
-export interface IndexProps {}
+export interface SearchPageProps {}
 
-export interface IndexState {}
-const Index = props => {
-	if (props.logout === "true") {
-		return (
-			<div>
-				<Alert message="You have succesfully logged out" />
-				<p>
-					Click{" "}
-					<Link href="/">
-						<a>here</a>
-					</Link>{" "}
-					to return to homepage
-				</p>
-			</div>
-		);
-	}
-
-	return (
-		<div>
-			<h1>Hearthsearch</h1>
-		</div>
-	);
+const SearchPage: React.SFC<SearchPageProps> = () => {
+	return <Search />;
 };
 
-Index.getInitialProps = ({ query }) => {
-	return {
-		logout: query.logout
-	};
-};
-
-export default Index;
+export default SearchPage;

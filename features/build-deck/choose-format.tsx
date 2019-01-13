@@ -34,7 +34,7 @@ export default class ChooseFormat extends React.Component<any, any> {
 					/>
 				</div>
 				<Link href={`/build?format=${this.state.format}`}>
-					<Button>Choose class</Button>
+					<Button style={{ marginTop: "15px" }}>Choose class</Button>
 				</Link>
 			</div>
 		);

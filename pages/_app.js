@@ -16,7 +16,14 @@ class MyApp extends App {
 					<CheckUser>
 						<>
 							<Navbar />
-							<Component {...pageProps} />
+							<div
+								style={{
+									width: "900px",
+									margin: "30px auto"
+								}}
+							>
+								<Component {...pageProps} />
+							</div>
 						</>
 					</CheckUser>
 				</Provider>

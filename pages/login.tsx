@@ -90,8 +90,8 @@ const Login = ({ userFetched }) => {
 							<Button type="primary" htmlType="submit">
 								Login
 							</Button>
-							<Link href="/login">
-								<a style={{ marginLeft: "15px" }}>Login</a>
+							<Link href="/signup">
+								<a style={{ marginLeft: "15px" }}>Sign up</a>
 							</Link>
 						</FormItem>
 					</Form>

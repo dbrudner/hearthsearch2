@@ -13,9 +13,7 @@ const initialState = {
 
 export const buildDeckReducer = (state = initialState, action) => {
 	if (action.type === CARD_ADDED) {
-		const quantity = _.keys(state.deck).includes(action.payload.name)
-			? 2
-			: 1;
+		const quantity = state.deck[action.payload.name] ? 2 : 1;
 
 		return {
 			...state,
@@ -46,13 +44,11 @@ export const buildDeckReducer = (state = initialState, action) => {
 						...state,
 						deck: { ...state.deck, [payload]: { ...updatedCard } }
 					};
-				} else {
-					return {
-						...state,
-						deck: _.omit({ ...state.deck }, payload)
-					};
 				}
-				return state;
+				return {
+					...state,
+					deck: _.omit({ ...state.deck }, payload)
+				};
 			}
 		}
 	}

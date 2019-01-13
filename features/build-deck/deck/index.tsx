@@ -1,27 +1,22 @@
 import { connect } from "react-redux";
 import _ from "lodash";
 import CardTile from "./card-tile";
-import * as types from "../model";
 
-const sortDeckKeys = deck =>
-	Object.keys(deck).sort((a, b) => {
-		if (a > b) {
-			return 1;
-		}
-		if (a < b) {
-			return -1;
-		}
-		return 0;
-	});
-
-const sortDeck = (deck, keys) => keys.map(key => deck[key]);
+const sortDeck = deck => {
+	return _.sortBy(
+		Object.keys(deck).map(card => {
+			return deck[card];
+		}),
+		["quantity"]
+	);
+};
 
 const Deck = ({ params, deck }) => (
 	<div>
 		<h2>{params.hero}</h2>
 		<p>{params.format}</p>
 		<ul style={{ margin: 0, padding: 0 }}>
-			{_.map(sortDeck(deck, sortDeckKeys(deck)), card => (
+			{_.map(sortDeck(deck), card => (
 				<CardTile key={`cardtile-${card.dbfId}`} {...card} />
 			))}
 		</ul>

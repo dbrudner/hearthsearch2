@@ -1,9 +1,11 @@
+import { createSelector } from "reselect";
+
 export const selectUser = ({ user }) => ({ user });
 export const USER_FETCHED = "USER_FETCHED";
 export const NOT_LOGGED_IN = "NOT_LOGGED_IN";
 export const USER_LOGGED_OUT = "USER_LOGGED_OUT";
 
-const intitialState = null;
+const intitialState = {};
 
 export const userFetched = user => ({
 	type: USER_FETCHED,
@@ -28,3 +30,7 @@ export const userReducer = (state = intitialState, action) => {
 	}
 	return state;
 };
+
+export const isLoggedInSelector = ({ user }) => ({
+	isLoggedIn: Boolean(user._id)
+});
